@@ -3,7 +3,9 @@
     {
       "projectId": "664608222f5dd656dc20c4f0",
       "projectName": "Test1 ska nu bli test 333",
-      "userIds": ["664703b2bc938245afec5beb"],
+      "userIds": [
+        "664703b2bc938245afec5beb"
+      ],
       "issues": null,
       "active": false
     },
@@ -22,8 +24,41 @@
       "votes": null,
       "startTime": "2024-05-17T10:38:27.4206328",
       "endTime": null,
-      "estimatedTime": 0.0,
+      "estimatedTime": 0,
       "actualTime": null
+    }
+  ],
+  "login": [
+    {
+      "id": "151d",
+      "login": "Kurvel",
+      "password": "1234"
+    }
+  ],
+  "register": [
+    {
+      "id": "285e",
+      "userName": "Kurvel",
+      "firstName": "Emil",
+      "lastName": "Sjöström",
+      "password": "1234",
+      "email": "emil@emil.com"
+    },
+    {
+      "id": "f1f0",
+      "userName": "Anna",
+      "firstName": "Kalle",
+      "lastName": "admin",
+      "password": "1347",
+      "email": "kalle@kalle.se"
+    },
+    {
+      "id": "f5dd",
+      "userName": "Anna",
+      "firstName": "Kalle",
+      "lastName": "admin",
+      "password": "1347",
+      "email": "kalle@kalle.se"
     }
   ],
   "issue": [

@@ -1,0 +1,24 @@
+body{
+    background-color: rgb(214, 210, 210);
+}
+.homeHeader {
+    text-align: center;
+    font-size: 80px;
+    font-weight: bold;
+    color: rgb(167, 231, 167);
+    text-shadow: 2px 2px 2px black;
+    margin-top: 100px;
+    margin-bottom: 50px;
+}
+.cardsPic {
+    max-width: 100%;
+    height: auto;
+    width: 400px;
+    border-radius: 30px; 
+}
+.cardsPicWrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 150px;
+}

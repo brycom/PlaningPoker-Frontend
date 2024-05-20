@@ -13,7 +13,7 @@ const setAuthHeader = (token: string | null): void => {
 };
 
 export function Login() {
-  const [login, setLogin] = useState<string>("");
+  const [username, setUserName] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
   const onSubmit = async (event: React.FormEvent<HTMLFormElement>): Promise<void> => {
@@ -23,7 +23,7 @@ export function Login() {
       const response = await fetch("http://localhost:3000/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ login: login, password: password })
+        body: JSON.stringify({ username: username, password: password })
       });
 
       if (response.status === 200) {
@@ -44,8 +44,8 @@ export function Login() {
         <label htmlFor="login">Login</label>
         <input
           name="login"
-          value={login}
-          onChange={(event) => setLogin(event.target.value)}
+          value={username}
+          onChange={(event) => setUserName(event.target.value)}
         />
       </div>
 

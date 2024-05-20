@@ -5,14 +5,12 @@ const Home = () => {
 
     return (
         <>
-              <div>
+         <div className="homeContainer">
         <Navbar/>
         <h1 className="homeHeader">Planing Poker</h1>
-        <div className="cardsPicWrapper">
-        <img src="src/Component/cards.jpg" alt="Asses" className="cardsPic" />
-        </div>
        
-        </div>
+       </div>
+      
             </>
     )
 }

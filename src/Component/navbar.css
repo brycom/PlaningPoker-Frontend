@@ -1,13 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
 .navbarContainer {
     width: 100%;
-    background-color: #f8f9fa;
-    padding: 10px 0;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color:transparent;
+    color: white;
+    position: fixed;
+    top: 0;
+    left: 0;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
+    justify-content: space-between;
+    padding: 10px 20px;
+    z-index: 1000; 
 }
 .navbarContent {
     display: flex;
@@ -61,5 +63,5 @@
 }
 
 .navbarButtonUser:hover {
-    background-color: #dcf5e2;
+    background-color: #76d38c;
 }

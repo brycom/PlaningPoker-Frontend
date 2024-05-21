@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
+.navbarContainer {
+    width: 100%;
+    background-color:transparent;
+    color: white;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+    z-index: 1000; 
+}
+.navbarContent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 0 20px;
+}
+
+.navbarButtonContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1cm; 
+}
+.navbarButton {
+    background-color: #c1d3e7;
+    color: white;
+    text-shadow: 1px 1px 2px black;
+    border-radius: 15px;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 20px;
+    transition: background-color 0.3s ease;
+}
+.navbarButton:hover {
+    background-color: #88b9ee;
+}
+.navbarButtonUserContainer {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    display: flex;
+    gap: 2cm;
+}
+
+
+.navbarButtonUser {
+    background-color:transparent;
+    text-shadow: 1px 1px 2px black;
+    color: rgb(189, 182, 182);
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 30px;
+    width: 200px;
+    font-family: 'Patrick Hand';
+    border-radius: 20px;
+    transition: background-color 0.3s ease;
+}
+
+.navbarButtonUser:hover {
+    background-color: #76d38c;
+}

@@ -90,7 +90,7 @@ const IssueList: React.FC = () => {
         <h2>Issue List</h2>
         <ul className="issueList">
             {issues.map(issues => (
-                <li  className="issueListItem" key={issues.id}>
+                <li  className="issueListItem" key={issues.issueId}>
                     
                     <div>
                         <p>ID: {issues.issueId}</p>

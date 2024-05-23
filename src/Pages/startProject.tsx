@@ -6,7 +6,7 @@ const StartProject:React.FC<Props> = ({onBackToHome}) => {
         <div>
             <h1>Starta projekt</h1>
 
-        <IssueList/>
+        <IssueList projectId = "664f152a0c75153fccb0d3b7"/>
 
         <button onClick={onBackToHome} className="backButton">Back to Home</button>
         </div>

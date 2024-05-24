@@ -1,8 +1,8 @@
 import React from "react";
 
 interface Player {
-  id: number;
-  name: string;
+  userId: number;
+  username: string;
 }
 
 interface PlayerListProps {
@@ -15,7 +15,7 @@ const PlayerList: React.FC<PlayerListProps> = ({ players }) => {
       <h2>Players</h2>
       <ul>
         {players.map((player) => (
-          <li key={player.id}>{player.name}</li>
+          <li key={player.userId}>{player.username}</li>
         ))}
       </ul>
     </div>

@@ -1,0 +1,71 @@
+{
+  "project": [
+    {
+      "projectId": "664608222f5dd656dc20c4f0",
+      "projectName": "Test1 ska nu bli test 333",
+      "userIds": [
+        "664703b2bc938245afec5beb"
+      ],
+      "issues": null,
+      "active": false,
+      "id": "c75f"
+    },
+    {
+      "projectId": "6647035a33f1ac7bb0ce6468",
+      "projectName": "test testsson",
+      "userIds": null,
+      "issues": null,
+      "active": false,
+      "id": "7612"
+    }
+  ],
+  "user": [
+    {
+      "userId": "8640503c-dd09-42c8-bd50-873e41d852e2",
+      "issueName": " SUPER TESTING",
+      "votes": null,
+      "startTime": "2024-05-17T10:38:27.4206328",
+      "endTime": null,
+      "estimatedTime": 0,
+      "actualTime": null,
+      "id": "50cc"
+    }
+  ],
+  "login": [],
+  "register": [],
+  "issue": [
+    {
+      "issueId": "123124515523423523235",
+      "issueName": " SUPER TESTING",
+      "votes": null,
+      "startTime": null,
+      "endTime": null,
+      "estimatedTime": null,
+      "actualTime": null,
+      "id": "1f5d"
+    },
+    {
+      "id": "1e76",
+      "headers": {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJzZWxmIiwic3ViIjoiR2VvcmciLCJleHAiOjE3MTYyODM4OTMsImlhdCI6MTcxNjI4MDI5Mywicm9sZXMiOiJ1c2VyIn0.o4ZD1gGI-NoOzyB4w5jprRs_Q8k92BXZIxJRrQNeQT-MFYCyNWnpXMfQ0TlUcIP46SoxTcQ2McpN8dwwA_q2zmFQxN6_uyHPpcBuff3oOmyKqSvBzU0Hmr_hD1cmPKyLNdhYzEylcDnATRKy0V8RR8MiOyP3R2QaKNYZZMxtoXchcqLVV3QHFzVLupBRyQlIpuUVZuhd8omS0wa0X1haICeFzMNpZeh_l9nvjDvkXhkpU0TXEPcjkiatZNq_YdrqFLFBAmUG0rsYIl51omlQ1Fn2dQ9ZC4Bog8GSySv0N2SGDLujcztp8lRXunUvhrTp2_SIfzl2uYjsXfZ8tAT7mQ"
+      },
+      "body": "{\"issuename\":\" SUPER TESTING Testsson\",\"votes\":null,\"startTime\":null,\"endTime\":null,\"estimatedTime\":null,\"actualTime\":null}"
+    },
+    {
+      "id": "a1b9",
+      "headers": {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJzZWxmIiwic3ViIjoiR2VvcmciLCJleHAiOjE3MTYyODM4OTMsImlhdCI6MTcxNjI4MDI5Mywicm9sZXMiOiJ1c2VyIn0.o4ZD1gGI-NoOzyB4w5jprRs_Q8k92BXZIxJRrQNeQT-MFYCyNWnpXMfQ0TlUcIP46SoxTcQ2McpN8dwwA_q2zmFQxN6_uyHPpcBuff3oOmyKqSvBzU0Hmr_hD1cmPKyLNdhYzEylcDnATRKy0V8RR8MiOyP3R2QaKNYZZMxtoXchcqLVV3QHFzVLupBRyQlIpuUVZuhd8omS0wa0X1haICeFzMNpZeh_l9nvjDvkXhkpU0TXEPcjkiatZNq_YdrqFLFBAmUG0rsYIl51omlQ1Fn2dQ9ZC4Bog8GSySv0N2SGDLujcztp8lRXunUvhrTp2_SIfzl2uYjsXfZ8tAT7mQ"
+      },
+      "body": {
+        "issuename": " SUPER TESTING Testsson",
+        "votes": null,
+        "startTime": null,
+        "endTime": null,
+        "estimatedTime": null,
+        "actualTime": null
+      }
+    }
+  ]
+}

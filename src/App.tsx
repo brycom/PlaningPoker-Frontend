@@ -1,12 +1,14 @@
 import { useState } from "react";
 import "./App.css";
+import Home from "./Pages/home";
+
 
 function App() {
-  const [] = useState(0);
+  const [url ] = useState<string>("https://seal-app-3ryxu.ondigitalocean.app");
 
   return (
     <>
-      <div>hej hej</div>
+    <Home url ={url}/>
     </>
   );
 }

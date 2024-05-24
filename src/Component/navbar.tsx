@@ -6,8 +6,12 @@ import Register from "./register";
 import Login from "./login";
 import "./navbar.css";
 
+interface Props {
+    url: string;
+}
 
-const Navbar:React.FC = () => {
+
+const Navbar:React.FC<Props> = ({url}) => {
     const[selectedOption, setSelectedOption] = useState<string | null>(null)
 
     const handleNavbarOptionClick = (option: string) => {
@@ -35,11 +39,11 @@ const Navbar:React.FC = () => {
             
             )}
             {/* {selectedOption === "Home" && <Home />} */}
-            {selectedOption === "StartProject" && <StartProject onBackToHome={handleBackToHomeClick}/>}
-            {selectedOption === "InvitePage" && <InvitePage onBackToHome={handleBackToHomeClick} />}
-            {selectedOption === "StatisticsPage" && <Statistics onBackToHome={handleBackToHomeClick}/>}
-            {selectedOption === "Register" && <Register/>}
-            {selectedOption === "Login" && <Login />}
+            {selectedOption === "StartProject" && <StartProject url={url} onBackToHome={handleBackToHomeClick}/>}
+            {selectedOption === "InvitePage" && <InvitePage url={url} onBackToHome={handleBackToHomeClick} />}
+            {selectedOption === "StatisticsPage" && <Statistics url={url} onBackToHome={handleBackToHomeClick}/>}
+            {selectedOption === "Register" && <Register url={url}/>}
+            {selectedOption === "Login" && <Login url={url} />}
 
             </div>
             

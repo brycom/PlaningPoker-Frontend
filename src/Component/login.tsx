@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 
-const getAuthToken = (): string | null => {
-  return window.localStorage.getItem('auth_token');
-};
+// const getAuthToken = (): string | null => {
+//   return window.localStorage.getItem('auth_token');
+// };
+
 
 const setAuthHeader = (token: string | null): void => {
   if (token !== null) {
@@ -11,8 +12,11 @@ const setAuthHeader = (token: string | null): void => {
     window.localStorage.removeItem("auth_token");
   }
 };
+interface Props {
+  url:string
+}
 
-export function Login() {
+export function Login(props:Props) {
   const [username, setUserName] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
@@ -20,7 +24,7 @@ export function Login() {
     event.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:8080/auth/login", {
+      const response = await fetch(props.url+"/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username: username, password: password })

@@ -2,7 +2,9 @@ import { AverageVotes, AverageVoteForIssue, IssuesWithHighVotes } from "../Compo
 
 
 interface Props{
-    onBackToHome: () => void}
+    onBackToHome: () => void
+    url: string
+}
 const Statistics:React.FC<Props> = ({onBackToHome}) => {
     return (
         <div>

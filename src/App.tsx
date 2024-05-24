@@ -4,11 +4,11 @@ import Home from "./Pages/home";
 
 
 function App() {
-  const [] = useState(0);
+  const [url ] = useState<string>("https://seal-app-3ryxu.ondigitalocean.app");
 
   return (
     <>
-    <Home />
+    <Home url ={url}/>
     </>
   );
 }

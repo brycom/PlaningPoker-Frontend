@@ -1,6 +1,9 @@
 import { useState } from "react";
 
-export function Register() {
+interface Props {
+  url:string;
+}
+export function Register(props:Props) {
     const [userName, setUserName] = useState<string>("");
     const [firstName, setFirstName] = useState<string>("");
     const [lastName, setLastName] = useState<string>("");
@@ -12,7 +15,7 @@ export function Register() {
       event.preventDefault();
   
       try {
-        const response = await fetch("http://localhost:8080/auth/register", {
+        const response = await fetch(props.url+"/auth/register", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ userName: userName, firstName: firstName, lastName: lastName, password: password, email: email })

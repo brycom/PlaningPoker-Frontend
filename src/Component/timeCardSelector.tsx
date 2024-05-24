@@ -7,12 +7,15 @@ interface Vote {
 }
 interface Prop {
   url: string;
+  projectId: string;
+  issueId: string;
 }
 
 const timeCards: number[] = [1, 2, 3, 5, 8, 13, 21];
 
-const TimeCardSelector: React.FC<Prop> = (url) => {
+const TimeCardSelector: React.FC<Prop> = ({ url, projectId, issueId }) => {
   const [selectedCard, setSelectedCard] = useState<number>();
+  console.log(url, projectId, issueId);
 
   const [vote, setVote] = useState<Vote[]>([]);
 
@@ -28,10 +31,11 @@ const TimeCardSelector: React.FC<Prop> = (url) => {
   };
 
   const handleAddVote = async (projectId: string, issueId: string) => {
-    console.log(projectId, issueId);
+    console.log(projectId, issueId, url);
     try {
+      console.log(issueId);
       const res = await axios.post<Vote>(
-        url + `/vote/uservote/${projectId}/${issueId}`,
+        `https://seal-app-3ryxu.ondigitalocean.app/vote/uservote/${projectId}/${issueId}`,
         newVote,
         {
           headers: {
@@ -54,14 +58,7 @@ const TimeCardSelector: React.FC<Prop> = (url) => {
         {timeCards.map((card) => (
           <li key={card} onClick={() => handleSelectCard(card)}>
             {card}
-            <button
-              onClick={() =>
-                handleAddVote(
-                  "664f3b9387a63648a8827229",
-                  "eca7382b-b660-42e9-acdb-9d7ac6bfe2f0"
-                )
-              }
-            >
+            <button onClick={() => handleAddVote(projectId, issueId)}>
               Post
             </button>
           </li>

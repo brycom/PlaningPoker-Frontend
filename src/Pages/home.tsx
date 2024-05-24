@@ -1,12 +1,15 @@
 import Navbar from "../Component/navbar";
 import "../Component/home.css"
 
-const Home = () => {
+interface Props{
+    url: string
+}
+const Home:React.FC<Props> = ({url}) => {
 
     return (
         <>
          <div className="homeContainer">
-        <Navbar/>
+        <Navbar url={url}/>
         <h1 className="homeHeader">Planing Poker</h1>
        
        </div>

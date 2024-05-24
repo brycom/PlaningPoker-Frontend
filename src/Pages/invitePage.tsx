@@ -1,5 +1,7 @@
 interface Props{
-    onBackToHome: () => void}
+    onBackToHome: () => void
+    url: string
+}
 const InvitePage:React.FC<Props> = ({onBackToHome}) => {
    
     return (

@@ -1,12 +1,14 @@
 import IssueList from "../Component/issueList"
 interface Props{
-    onBackToHome: () => void}
-const StartProject:React.FC<Props> = ({onBackToHome}) => {
+    onBackToHome: () => void
+    url: string
+}
+const StartProject:React.FC<Props> = ({onBackToHome,url}) => {
     return (
         <div>
             <h1>Starta projekt</h1>
 
-        <IssueList projectId = "664f152a0c75153fccb0d3b7"/>
+        <IssueList url={url} projectId="66504c6a4cc47431f1fb5d4a" />
 
         <button onClick={onBackToHome} className="backButton">Back to Home</button>
         </div>

@@ -18,8 +18,9 @@ interface Issue{
 }
 interface IssueListProps{
     projectId: string;
+    url:string;
 }
-const IssueList: React.FC<IssueListProps> = ({projectId}) => {
+const IssueList: React.FC<IssueListProps> = ({projectId,url}) => {
     const [issues, setIssues] = useState<Issue[]>([]);
     const [newIssueName, setNewIssueName] = useState<string>("");
     const [isUpdateFormVisible, setIsUpdateFormVisible] = useState<boolean>(false);
@@ -35,7 +36,7 @@ const IssueList: React.FC<IssueListProps> = ({projectId}) => {
     useEffect(() => {
         const fetchIssues = async () => {
             try {
-                const res = await axios.get<Issue[]>(`http://localhost:8080/issue/${projectId}`,{
+                const res = await axios.get<Issue[]>(url+`/issue/${projectId}`,{
                     headers:{
                         'Authorization': `Bearer ${token}`
                     }
@@ -71,7 +72,7 @@ const IssueList: React.FC<IssueListProps> = ({projectId}) => {
 
     try{
         
-        const res = await axios.post<Issue>(`http://localhost:8080/issue/${projectId}`,
+        const res = await axios.post<Issue>(url+`/issue/${projectId}`,
         newIssue,
         {
             headers:{
@@ -95,7 +96,7 @@ const IssueList: React.FC<IssueListProps> = ({projectId}) => {
         const handleCloseIssue = async (issueId: string) => {
             try{
                 
-                const res = await axios.put(`http://localhost:8080/issue/${projectId}/${issueId}/close`, null,{
+                const res = await axios.put(url+`/issue/${projectId}/${issueId}/close`, null,{
                     headers:{
                         'Authorization': `Bearer ${token}`
                     }
@@ -122,7 +123,7 @@ const IssueList: React.FC<IssueListProps> = ({projectId}) => {
             const handleUpdateIssueSubmit = async (issueId: string) => {
                 if (!currentIssue) return;
                 try {
-                    const res = await axios.patch<Issue>(`http://localhost:8080/issue/${projectId}/${issueId}`, 
+                    const res = await axios.patch<Issue>(url+`/issue/${projectId}/${issueId}`, 
                     {issuename:updatedIssueName}, {
                         
                         headers: {
@@ -144,7 +145,7 @@ const IssueList: React.FC<IssueListProps> = ({projectId}) => {
             const handleDeleteIssue = async (issueId: string) => {
                 console.log("Project id: ", projectId);
                 try {
-                    await axios.delete(`http://localhost:8080/issue/${projectId}/${issueId}`, {
+                    await axios.delete(url+`/issue/${projectId}/${issueId}`, {
                         headers: {
                             'Authorization': `Bearer ${token}`
                         }

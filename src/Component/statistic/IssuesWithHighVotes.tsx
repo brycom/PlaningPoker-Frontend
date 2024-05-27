@@ -32,7 +32,6 @@ const IssuesWithHighVotes: React.FC<IssuesWithHighVotesProps> = ({ projectId, th
     const fetchData = async () => {
       try {
         const result = await getIssuesWithHighVotes(projectId, threshold);
-        console.log('API Response:', result);
         setIssues(Array.isArray(result) ? result : []);
       } catch (err) {
         setError('Failed to fetch issues');
@@ -75,4 +74,3 @@ const IssuesWithHighVotes: React.FC<IssuesWithHighVotesProps> = ({ projectId, th
 };
 
 export default IssuesWithHighVotes;
-

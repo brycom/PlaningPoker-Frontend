@@ -1,8 +1,9 @@
 import React from "react";
+import "./pokertable.css";
 
 interface Player {
-  id: number;
-  name: string;
+  userId: number;
+  username: string;
 }
 
 interface PlayerListProps {
@@ -12,10 +13,10 @@ interface PlayerListProps {
 const PlayerList: React.FC<PlayerListProps> = ({ players }) => {
   return (
     <div>
-      <h2>Players</h2>
-      <ul>
+      <h2>Players:</h2>
+      <ul className="playerlist">
         {players.map((player) => (
-          <li key={player.id}>{player.name}</li>
+          <li key={player.userId}>{player.username}</li>
         ))}
       </ul>
     </div>

@@ -1,5 +1,4 @@
 import { useState } from "react"
-import IssueList from "../Component/issueList"
 import axios from "axios"
 interface Props{
 
@@ -75,3 +74,4 @@ const StartProject:React.FC<Props> = ({url,setUpdateList,setShowStartProject}) =
     )
 }
 export default StartProject
+

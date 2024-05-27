@@ -52,7 +52,7 @@ const IssueList: React.FC<IssueListProps> = ({projectId,url}) => {
             fetchIssues();
         }
        
-    },[token, projectId]);
+    },[token, projectId, currentIssue]);
 
    
     const handleAddIssue = async () => {

@@ -33,21 +33,23 @@ const Navbar:React.FC<Props> = ({url,selectedProject,setSelectedProject}) => {
         
             <div className="navbarButtonContainer">
               
-                <button className="navbarButton" onClick={() => handleNavbarOptionClick("StartProject")}>Starta projekt</button>
-                <button className = "projectList" onClick={()=> handleNavbarOptionClick("projectList") }>projectList</button>
+                {/* <button className="navbarButton" onClick={() => handleNavbarOptionClick("StartProject")}>Starta projekt</button> */}
+                <div className="projectlist-container">
+                <button className = "navbarButton" id="projectlist-btn">projectList</button>
+                <ProjectList url={url} selectedProject={selectedProject} setSelectedProject= {setSelectedProject} setSelectedOption={setSelectedOption}/>
+                </div>
                 <button className="navbarButton" onClick={() => handleNavbarOptionClick("InvitePage")}>Bjuda in</button>
                 <button className="navbarButton" onClick={() => handleNavbarOptionClick("StatisticsPage")}>Statistik</button>
             </div>
-            <div className="navbarButtonUserContainer">
+{            <div className="navbarButtonUserContainer">
                 <button className="navbarButtonUser" onClick={() => handleNavbarOptionClick("Register")}>Registrera</button> 
                 <button className="navbarButtonUser" onClick={() => handleNavbarOptionClick("Login")}>Logga in</button>
-            </div>
+            </div>}
             </div>
             
             )}
             {/* {selectedOption === "Home" && <Home />} */}
-            {selectedOption === "StartProject" && <StartProject selectedProject={selectedProject} url={url} onBackToHome={handleBackToHomeClick}/>}
-            {selectedOption === "projectList" && <ProjectList url={url} selectedProject={selectedProject} setSelectedProject= {setSelectedProject}/>}
+            {/* {selectedOption === "StartProject" && <StartProject url={url}/>} */}
             {selectedOption === "InvitePage" && <InvitePage url={url} onBackToHome={handleBackToHomeClick} />}
             {selectedOption === "StatisticsPage" && <Statistics url={url} onBackToHome={handleBackToHomeClick}/>}
             {selectedOption === "Register" && <Register url={url}/>}

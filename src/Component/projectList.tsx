@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Navbar from './navbar';
+import StartProject from '../Pages/startProject';
 
 interface Props {
+    setSelectedOption: Function;
     selectedProject: string;
     setSelectedProject: Function;
     url: string;
@@ -24,6 +26,8 @@ interface ModifiedProject {
 
 const ProjectList: React.FC<Props> = (props) => {
     const [projectList, setProjectList] = useState<ModifiedProject[]>([]);
+    const [showStartProject, setShowStartProject] = useState<boolean>(false);
+    const[updateList, setUpdateList] =useState<boolean>(false);
     const token = localStorage.getItem("auth_token");
 
     const projectListFetch = async () => {
@@ -40,6 +44,8 @@ const ProjectList: React.FC<Props> = (props) => {
             }));
 
             setProjectList(dataModifier);
+            setUpdateList(false);
+            setShowStartProject(false);
         } catch (error) {
             console.error(error);
         }
@@ -49,20 +55,26 @@ const ProjectList: React.FC<Props> = (props) => {
         if (token) {
             projectListFetch();
         }
-    }, [token]);
+    }, [token,updateList]);
+
+    useEffect(() => {
+        console.log(showStartProject)
+        
+    }, [showStartProject]);
 
     return (
-        <div>
-            <Navbar url={props.url}selectedProject={props.selectedProject} setSelectedProject= {props.setSelectedProject}/>
-            <h1>Här under borde det vara?</h1>
-            <ul>
+            
+            <ul className='projectlist-ul'>
                 {projectList.map(project => (
-                    <li key={project.projectId} onClick={()=>{
+                    <li className='projectlist-li' key={project.projectId} onClick={()=>{
                          props.setSelectedProject(project.projectId)
+                         props.setSelectedOption("StartProject")
                         }}>{project.projectname}</li>
                 ))}
+                <li className='projectlist-li' onClick={() => setShowStartProject(true)}>Nytt projekt +
+                {showStartProject&&<StartProject url={props.url} setShowStartProject={setShowStartProject} setUpdateList={setUpdateList}/>}
+                </li>
             </ul>
-        </div>
     );
 };
 

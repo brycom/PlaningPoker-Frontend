@@ -13,13 +13,14 @@ interface Props {
   projectId: string;
   issueId: string;
   url: string;
+  setSelectedIssue: Function;
 }
 
 const PokerTable: React.FC<Props> = ({ projectId, url }) => {
   const [players, setPlayers] = useState<Player[]>([]);
   const token = localStorage.getItem("auth_token");
 
-  const [selectedIssue, setSelectedIssue] = useState<string>("");
+  const [selectedIssue, setSelectedIssue] = useState<string | null>(null);
 
   useEffect(() => {
     axios
@@ -30,19 +31,21 @@ const PokerTable: React.FC<Props> = ({ projectId, url }) => {
       })
       .then((response) => setPlayers(response.data))
       .catch((error) => console.error("Error fetching players:", error));
-  }, []);
+  }, [projectId]);
 
   return (
     <div className="poker-table">
       <h1>Poker Table</h1>
       <PlayerList players={players} />
-      <TimeCardSelector
-        url={url}
-        projectId={projectId}
-        issueId={selectedIssue}
-      />
+      {selectedIssue && (
+        <TimeCardSelector
+          url={url}
+          projectId={projectId}
+          issueId={selectedIssue}
+        />
+      )}
       <IssueList
-        projectId="664f3b9387a63648a8827229"
+        projectId={projectId}
         url={url}
         selectedIssue={selectedIssue}
         setSelectedIssue={setSelectedIssue}

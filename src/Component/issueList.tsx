@@ -19,7 +19,7 @@ export interface Issue {
 interface IssueListProps {
   projectId: string;
   url: string;
-  selectedIssue: string;
+  selectedIssue: string | null;
   setSelectedIssue: Function;
 }
 const IssueList: React.FC<IssueListProps> = ({
@@ -38,29 +38,24 @@ const IssueList: React.FC<IssueListProps> = ({
   const [error, setError] = useState<string>("");
   const token = localStorage.getItem("auth_token");
 
-
-   
-
-    useEffect(() => {
-        const fetchIssues = async () => {
-            try {
-                const res = await axios.get<Issue[]>(url+`/issue/${projectId}`,{
-                    headers:{
-                        'Authorization': `Bearer ${token}`
-                    }
-                });
-                setIssues(res.data);
-                console.log("Fetched issues: ",res.data);
-               
-            } catch (error) {
-                console.error(error);
-            }
-        };
-        if(token && projectId){
-            fetchIssues();
-        }
-       
-    },[token, projectId, currentIssue]);
+  useEffect(() => {
+    const fetchIssues = async () => {
+      try {
+        const res = await axios.get<Issue[]>(url + `/issue/${projectId}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        setIssues(res.data);
+        console.log("Fetched issues: ", res.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    if (token && projectId) {
+      fetchIssues();
+    }
+  }, [token, projectId, currentIssue]);
 
   const handleAddIssue = async () => {
     if (!newIssueName) {

@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 interface Vote {
   userId: string;
@@ -24,18 +24,27 @@ const TimeCardSelector: React.FC<Prop> = ({ url, projectId, issueId }) => {
   const handleSelectCard = (card: number) => {
     setSelectedCard(card);
   };
+  let userId: string | null = "";
+  useEffect(() => {
+    userId = localStorage.getItem("userId");
+  }, []);
 
   const newVote: Partial<Vote> = {
-    userId: "664f3bf387a63648a882722a",
+    userId: userId,
     vote: selectedCard,
   };
 
   const handleAddVote = async (projectId: string, issueId: string) => {
-    console.log(projectId, issueId, url);
+    console.log(
+      "Projekt id: " + projectId + "Issue id: " + issueId + "Url: " + url
+    );
     try {
       console.log(issueId);
       const res = await axios.post<Vote>(
-        `https://seal-app-3ryxu.ondigitalocean.app/vote/uservote/${projectId}/${issueId}`,
+        `https://seal-app-3ryxu.ondigitalocean.app/vote/uservote/` +
+          projectId +
+          "/" +
+          issueId,
         newVote,
         {
           headers: {

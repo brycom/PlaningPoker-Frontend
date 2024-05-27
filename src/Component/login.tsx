@@ -1,10 +1,5 @@
 import React, { useState } from "react";
 
-// const getAuthToken = (): string | null => {
-//   return window.localStorage.getItem('auth_token');
-// };
-
-
 const setAuthHeader = (token: string | null): void => {
   if (token !== null) {
     window.localStorage.setItem("auth_token", token);
@@ -13,27 +8,31 @@ const setAuthHeader = (token: string | null): void => {
   }
 };
 interface Props {
-  url:string
+  url: string;
 }
 
-export function Login(props:Props) {
+export function Login(props: Props) {
   const [username, setUserName] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
-  const onSubmit = async (event: React.FormEvent<HTMLFormElement>): Promise<void> => {
+  const onSubmit = async (
+    event: React.FormEvent<HTMLFormElement>
+  ): Promise<void> => {
     event.preventDefault();
 
     try {
-      const response = await fetch(props.url+"/auth/login", {
+      const response = await fetch(props.url + "/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username: username, password: password })
+        body: JSON.stringify({ username: username, password: password }),
       });
 
       if (response.status === 200) {
         const data = await response.json();
+        console.log(data);
         setAuthHeader(data["token"]);
-        window.location.href = "/"; 
+        localStorage.setItem("userId", data.user.userId);
+        window.location.href = "/";
       } else {
         setAuthHeader(null);
       }

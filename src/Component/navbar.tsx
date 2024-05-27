@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import StartProject from "../Pages/startProject";
 import InvitePage from "../Pages/invitePage";
-import Statistics from "../Pages/Statistics";
+import StatisticsPage from "../Pages/StatisticsPage"; // Uppdaterad import
 import Register from "./register";
 import Login from "./login";
 import "./navbar.css";
@@ -10,7 +10,7 @@ import ProjectList from "./projectList";
 interface Props {
     url: string;
     selectedProject: string
-    setSelectedProject: Function
+    setSelectedProject: () => void;
 }
 
 
@@ -49,7 +49,7 @@ const Navbar:React.FC<Props> = ({url,selectedProject,setSelectedProject}) => {
             {selectedOption === "StartProject" && <StartProject selectedProject={selectedProject} url={url} onBackToHome={handleBackToHomeClick}/>}
             {selectedOption === "projectList" && <ProjectList url={url} selectedProject={selectedProject} setSelectedProject= {setSelectedProject}/>}
             {selectedOption === "InvitePage" && <InvitePage url={url} onBackToHome={handleBackToHomeClick} />}
-            {selectedOption === "StatisticsPage" && <Statistics url={url} onBackToHome={handleBackToHomeClick}/>}
+            {selectedOption === "StatisticsPage" && <StatisticsPage url={url} projectId={selectedProject} onBackToHome={handleBackToHomeClick} />}
             {selectedOption === "Register" && <Register url={url}/>}
             {selectedOption === "Login" && <Login url={url} />}
 

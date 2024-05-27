@@ -3,6 +3,7 @@ import axios from "axios";
 import PlayerList from "./playerList";
 import TimeCardSelector from "./timeCardSelector";
 import IssueList from "./issueList";
+import "./pokertable.css";
 
 interface Player {
   userId: number;
@@ -32,7 +33,7 @@ const PokerTable: React.FC<Props> = ({ projectId, url }) => {
   }, []);
 
   return (
-    <div>
+    <div className="poker-table">
       <h1>Poker Table</h1>
       <PlayerList players={players} />
       <TimeCardSelector

@@ -10,7 +10,7 @@ const Home: React.FC<Props> = ({ url }) => {
     <>
       <div className="homeContainer">
         <Navbar url={url} />
-        <h1 className="homeHeader">Planing Poker</h1>
+        <h1 className="homeHeader">Planning Poker</h1>
         <PokerTable
           projectId="664f3b9387a63648a8827229"
           url={url}

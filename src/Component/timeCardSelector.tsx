@@ -54,17 +54,25 @@ const TimeCardSelector: React.FC<Prop> = ({ url, projectId, issueId }) => {
   return (
     <div>
       <h2>Select Time Card</h2>
-      <ul>
-        {timeCards.map((card) => (
-          <li key={card} onClick={() => handleSelectCard(card)}>
-            {card}
-            <button onClick={() => handleAddVote(projectId, issueId)}>
-              Post
-            </button>
-          </li>
-        ))}
-      </ul>
+      <div className="playercard-container">
+        <ul>
+          {timeCards.map((card) => (
+            <div className="playercard">
+              <li key={card} onClick={() => handleSelectCard(card)}>
+                {card}
+              </li>
+            </div>
+          ))}
+        </ul>
+      </div>
+
       {selectedCard && <p>Selected Card: {selectedCard}</p>}
+      <button
+        className="Voteknapp"
+        onClick={() => handleAddVote(projectId, issueId)}
+      >
+        Vote
+      </button>
     </div>
   );
 };

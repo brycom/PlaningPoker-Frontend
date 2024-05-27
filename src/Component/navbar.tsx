@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import StartProject from "../Pages/startProject";
 import InvitePage from "../Pages/invitePage";
 import Statistics from "../Pages/Statistics";
@@ -20,6 +20,24 @@ const Navbar:React.FC<Props> = ({url}) => {
     const handleBackToHomeClick = () => {
         setSelectedOption(null);
     };
+
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    useEffect(() => {
+        let token = localStorage.getItem("auth_token");
+        if (token !== null) {
+            setIsAuthenticated(true);
+        }
+    }, [handleNavbarOptionClick]);
+    console.log(isAuthenticated);
+
+    const logout = () => {
+        console.log("Logging out");
+        setIsAuthenticated(false);
+        localStorage.clear();
+        window.location.href = "/";
+    }
+    
+
    return(
     <div className="navbarContainer">
          {!selectedOption && (
@@ -27,13 +45,14 @@ const Navbar:React.FC<Props> = ({url}) => {
         
             <div className="navbarButtonContainer">
               
-                <button className="navbarButton" onClick={() => handleNavbarOptionClick("StartProject")}>Starta projekt</button>
-                <button className="navbarButton" onClick={() => handleNavbarOptionClick("InvitePage")}>Bjuda in</button>
-                <button className="navbarButton" onClick={() => handleNavbarOptionClick("StatisticsPage")}>Statistik</button>
+                {isAuthenticated && <button className="navbarButton" onClick={() => handleNavbarOptionClick("StartProject")}>Starta projekt</button>}
+                {isAuthenticated && <button className="navbarButton" onClick={() => handleNavbarOptionClick("InvitePage")}>Bjuda in</button>}
+                {isAuthenticated && <button className="navbarButton" onClick={() => handleNavbarOptionClick("StatisticsPage")}>Statistik</button>}
             </div>
             <div className="navbarButtonUserContainer">
-                <button className="navbarButtonUser" onClick={() => handleNavbarOptionClick("Register")}>Registrera</button> 
-                <button className="navbarButtonUser" onClick={() => handleNavbarOptionClick("Login")}>Logga in</button>
+                {!isAuthenticated && <button className="navbarButtonUser" onClick={() => handleNavbarOptionClick("Register")}>Registrera</button>} 
+                {!isAuthenticated &&<button className="navbarButtonUser" onClick={() => handleNavbarOptionClick("Login")}>Logga in</button>}
+                {isAuthenticated && <button className="navbarButtonUser" onClick={logout}>Logga ut</button>}
             </div>
             </div>
             

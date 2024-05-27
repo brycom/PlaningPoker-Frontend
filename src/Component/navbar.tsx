@@ -52,10 +52,10 @@ const Navbar:React.FC<Props> = ({url,selectedProject,setSelectedProject}) => {
             <div className="navbarButtonContainer">
               
 
-            <div className="projectlist-container">
+            {isAuthenticated&&<div className="projectlist-container">
                 <button className = "navbarButton" id="projectlist-btn">projectList</button>
                 <ProjectList url={url} selectedProject={selectedProject} setSelectedProject= {setSelectedProject} setSelectedOption={setSelectedOption}/>
-                </div>
+                </div>}
                 {isAuthenticated && <button className="navbarButton" onClick={() => handleNavbarOptionClick("InvitePage")}>Bjuda in</button>}
                 {isAuthenticated && <button className="navbarButton" onClick={() => handleNavbarOptionClick("StatisticsPage")}>Statistik</button>}
 

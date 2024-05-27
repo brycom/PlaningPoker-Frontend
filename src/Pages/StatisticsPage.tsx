@@ -23,34 +23,35 @@ interface StatisticsPageProps {
   onBackToHome: () => void;
 }
 
-const StatisticsPage: React.FC<StatisticsPageProps> = ({ url, projectId, onBackToHome }) => {
+const StatisticsPage: React.FC<StatisticsPageProps> = ({ projectId, onBackToHome }) => {
   const [averageVotes, setAverageVotes] = useState<number | null>(null);
   const [averageVoteForIssue, setAverageVoteForIssue] = useState<number | null>(null);
   const [issuesWithHighVotes, setIssuesWithHighVotes] = useState<Issue[]>([]);
-  const [threshold, setThreshold] = useState<number>(4.0); // Example threshold
+  const [threshold, setThreshold] = useState<number>(4.0); // Threshold for choosen project
+  const [selectedIssueId, setSelectedIssueId] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchAverageVotes = async () => {
-      const result = await getAverageVotes(projectId);
+      const result = await getAverageVotes(projectId); // Dynamiskt hämtar genomsnittliga röster för projektet
       setAverageVotes(result);
     };
 
     const fetchAverageVoteForIssue = async () => {
-      // Replace with actual issue ID
-      const issueId = "some-issue-id";
-      const result = await getAverageVoteForIssue(issueId);
-      setAverageVoteForIssue(result);
+      if (selectedIssueId) {
+        const result = await getAverageVoteForIssue(selectedIssueId); // Dynamiskt hämtar genomsnittliga röster för den valda issue
+        setAverageVoteForIssue(result);
+      }
     };
 
     const fetchIssuesWithHighVotes = async () => {
-      const result = await getIssuesWithHighVotes(projectId, threshold);
+      const result = await getIssuesWithHighVotes(projectId, threshold); // Dynamiskt hämtar issues med höga röster för projektet och tröskelvärdet
       setIssuesWithHighVotes(result);
     };
 
     fetchAverageVotes();
     fetchAverageVoteForIssue();
     fetchIssuesWithHighVotes();
-  }, [projectId, threshold]);
+  }, [projectId, threshold, selectedIssueId]);
 
   return (
     <div>
@@ -61,7 +62,13 @@ const StatisticsPage: React.FC<StatisticsPageProps> = ({ url, projectId, onBackT
         <p>{averageVotes !== null ? averageVotes : 'Loading...'}</p>
       </div>
       <div>
-        <h3>Average Vote for Issue: </h3>
+        <h3>Average Vote for Issue</h3>
+        <select onChange={(e) => setSelectedIssueId(e.target.value)}>
+          <option value="">Select an Issue</option>
+          {issuesWithHighVotes.map((issue) => (
+            <option key={issue.id} value={issue.id}>{issue.issueName}</option>
+          ))}
+        </select>
         <p>{averageVoteForIssue !== null ? averageVoteForIssue : 'Loading...'}</p>
       </div>
       <div>

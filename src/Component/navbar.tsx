@@ -52,7 +52,10 @@ const Navbar:React.FC<Props> = ({url,selectedProject,setSelectedProject}) => {
             <div className="navbarButtonContainer">
               
 
-                {isAuthenticated && <button className="navbarButton" onClick={() => handleNavbarOptionClick("StartProject")}>Starta projekt</button>}
+            {isAuthenticated&&<div className="projectlist-container">
+                <button className = "navbarButton" id="projectlist-btn">projectList</button>
+                <ProjectList url={url} selectedProject={selectedProject} setSelectedProject= {setSelectedProject} setSelectedOption={setSelectedOption}/>
+                </div>}
                 {isAuthenticated && <button className="navbarButton" onClick={() => handleNavbarOptionClick("InvitePage")}>Bjuda in</button>}
                 {isAuthenticated && <button className="navbarButton" onClick={() => handleNavbarOptionClick("StatisticsPage")}>Statistik</button>}
 
@@ -66,8 +69,7 @@ const Navbar:React.FC<Props> = ({url,selectedProject,setSelectedProject}) => {
             
             )}
             {/* {selectedOption === "Home" && <Home />} */}
-            {selectedOption === "StartProject" && <StartProject selectedProject={selectedProject} url={url} onBackToHome={handleBackToHomeClick}/>}
-            {selectedOption === "projectList" && <ProjectList url={url} selectedProject={selectedProject} setSelectedProject= {setSelectedProject}/>}
+            {/* {selectedOption === "StartProject" && <StartProject url={url}/>} */}
             {selectedOption === "InvitePage" && <InvitePage url={url} onBackToHome={handleBackToHomeClick} />}
             {selectedOption === "StatisticsPage" && <StatisticsPage url={url} projectId={selectedProject} onBackToHome={handleBackToHomeClick} />}
             {selectedOption === "Register" && <Register url={url}/>}

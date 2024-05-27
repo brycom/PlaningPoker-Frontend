@@ -5,14 +5,20 @@ import Statistics from "../Pages/Statistics";
 import Register from "./register";
 import Login from "./login";
 import "./navbar.css";
+import ProjectList from "./projectList";
 
 interface Props {
     url: string;
+    selectedProject: string
+    setSelectedProject: Function
 }
 
 
-const Navbar:React.FC<Props> = ({url}) => {
+
+const Navbar:React.FC<Props> = ({url,selectedProject,setSelectedProject}) => {
     const[selectedOption, setSelectedOption] = useState<string | null>(null)
+    
+    
 
     const handleNavbarOptionClick = (option: string) => {
         setSelectedOption(option)
@@ -45,9 +51,11 @@ const Navbar:React.FC<Props> = ({url}) => {
         
             <div className="navbarButtonContainer">
               
+
                 {isAuthenticated && <button className="navbarButton" onClick={() => handleNavbarOptionClick("StartProject")}>Starta projekt</button>}
                 {isAuthenticated && <button className="navbarButton" onClick={() => handleNavbarOptionClick("InvitePage")}>Bjuda in</button>}
                 {isAuthenticated && <button className="navbarButton" onClick={() => handleNavbarOptionClick("StatisticsPage")}>Statistik</button>}
+
             </div>
             <div className="navbarButtonUserContainer">
                 {!isAuthenticated && <button className="navbarButtonUser" onClick={() => handleNavbarOptionClick("Register")}>Registrera</button>} 
@@ -58,7 +66,8 @@ const Navbar:React.FC<Props> = ({url}) => {
             
             )}
             {/* {selectedOption === "Home" && <Home />} */}
-            {selectedOption === "StartProject" && <StartProject url={url} onBackToHome={handleBackToHomeClick}/>}
+            {selectedOption === "StartProject" && <StartProject selectedProject={selectedProject} url={url} onBackToHome={handleBackToHomeClick}/>}
+            {selectedOption === "projectList" && <ProjectList url={url} selectedProject={selectedProject} setSelectedProject= {setSelectedProject}/>}
             {selectedOption === "InvitePage" && <InvitePage url={url} onBackToHome={handleBackToHomeClick} />}
             {selectedOption === "StatisticsPage" && <Statistics url={url} onBackToHome={handleBackToHomeClick}/>}
             {selectedOption === "Register" && <Register url={url}/>}

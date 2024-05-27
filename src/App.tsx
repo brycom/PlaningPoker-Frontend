@@ -5,10 +5,11 @@ import Home from "./Pages/home";
 
 function App() {
   const [url ] = useState<string>("https://seal-app-3ryxu.ondigitalocean.app");
+  const [selectedProject, setSelectedProject] = useState<string>("wogeli boogeli");
 
   return (
     <>
-    <Home url ={url}/>
+    <Home url ={url} selectedProject={selectedProject} setSelectedProject= {setSelectedProject}/>
     </>
   );
 }

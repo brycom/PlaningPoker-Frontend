@@ -33,6 +33,7 @@ export function Login(props:Props) {
       if (response.status === 200) {
         const data = await response.json();
         setAuthHeader(data["token"]);
+        window.location.href = "/"; 
       } else {
         setAuthHeader(null);
       }

@@ -1,23 +1,26 @@
 import Navbar from "../Component/navbar";
-import "../Component/home.css";
 import PokerTable from "../Component/pokerTable";
+import "../Component/home.css"
+import { useState } from "react";
 
-interface Props {
-  url: string;
+interface Props{
+    url: string
+    selectedProject: string
+    setSelectedProject: Function
 }
-const Home: React.FC<Props> = ({ url }) => {
-  return (
-    <>
-      <div className="homeContainer">
-        <Navbar url={url} />
-        <h1 className="homeHeader">Planning Poker</h1>
-        <PokerTable
-          projectId="664f3b9387a63648a8827229"
-          url={url}
-          issueId={""}
-        />
-      </div>
-    </>
-  );
-};
-export default Home;
+const Home:React.FC<Props> = ({url,selectedProject,setSelectedProject}) => {
+    
+
+    return (
+        <>
+         <div className="homeContainer">
+        <Navbar url={url} selectedProject={selectedProject} setSelectedProject= {setSelectedProject}  />
+        <h1 className="homeHeader">Planing Poker</h1>
+       
+       </div>
+      
+            </>
+    )
+}
+export default Home
+

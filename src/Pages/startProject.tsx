@@ -1,3 +1,4 @@
+
 import IssueList from "../Component/issueList"
 interface Props{
     onBackToHome: () => void
@@ -17,3 +18,4 @@ const StartProject:React.FC<Props> = ({onBackToHome,url,selectedProject}) => {
     )
 }
 export default StartProject
+

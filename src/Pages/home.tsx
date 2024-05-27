@@ -1,4 +1,5 @@
 import Navbar from "../Component/navbar";
+import PokerTable from "../Component/pokerTable";
 import "../Component/home.css"
 import { useState } from "react";
 
@@ -22,3 +23,4 @@ const Home:React.FC<Props> = ({url,selectedProject,setSelectedProject}) => {
     )
 }
 export default Home
+

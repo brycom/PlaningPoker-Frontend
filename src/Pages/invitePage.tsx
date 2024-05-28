@@ -1,6 +1,7 @@
 interface Props{
     onBackToHome: () => void
     url: string
+    
 }
 const InvitePage:React.FC<Props> = ({onBackToHome}) => {
    

@@ -75,7 +75,7 @@
   display: inline-block;
 }
 
-.projectlist-ul {
+.projectlist-ul, .invitePlayer-ul {
   display: none;
   position: absolute;
   background-color: #f1f1f1;
@@ -86,7 +86,7 @@
   padding-left: 0;
   border-radius: 5px;
 }
-.projectlist-li {
+.projectlist-li, .invitePlayer-li {
   margin-left: 0;
   color: black;
   padding: 12px /* 16px */;
@@ -99,8 +99,17 @@
   border-radius: 5px;
 }
 
-.projectlist-container:hover .projectlist-ul {
+.projectlist-container:hover .projectlist-ul  {
   display: block;
 }
+
+.invitePlayer-li:hover {
+  background-color: #dddddd;
+  border-radius: 5px;
+}
+.projectlist-container:hover .invitePlayer-ul  {
+  display: block;
+}
+
 
 /* .projectlist-container:hover #projectlist-btn {background-color: #3e8e41;} */

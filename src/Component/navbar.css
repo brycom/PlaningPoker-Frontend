@@ -94,13 +94,22 @@
   display: block;
 }
 
-.projectlist-li:hover, .invitePlayer-li:hover {
+.projectlist-li:hover {
   background-color: #dddddd;
   border-radius: 5px;
 }
 
-.projectlist-container:hover .projectlist-ul, .invitePlayer-ul:hover .invitePlayer-ul {
+.projectlist-container:hover .projectlist-ul  {
   display: block;
 }
+
+.invitePlayer-li:hover {
+  background-color: #dddddd;
+  border-radius: 5px;
+}
+.projectlist-container:hover .invitePlayer-ul  {
+  display: block;
+}
+
 
 /* .projectlist-container:hover #projectlist-btn {background-color: #3e8e41;} */

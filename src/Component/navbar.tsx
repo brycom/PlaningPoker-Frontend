@@ -70,7 +70,8 @@ const Navbar: React.FC<Props> = ({
             {isAuthenticated && (
               <div className="projectlist-container">
               <button
-                className="navbarButton"
+                className="navbarButton" id="projectlist-btn"
+               
                 onClick={() => handleNavbarOptionClick("InvitePage")}
               >
                 Bjuda in

@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
+import "../Component/navbar.css"
 
 interface Props{
   url: string
@@ -32,23 +33,22 @@ function InvitePlayers(props: Props) {
   };
 
    return (
-  //   <div>
-  //     <input
-  //       type="text"
-  //       placeholder="Användarnamn"
-  //       value={userName}
-  //       onChange={(e) => setUserName(e.target.value)}
-  //     />
-  //     <button onClick={handleAddUser}>Invite Player</button>
-  //     {responseMessage && <div>{responseMessage}</div>}
-  //     {error && <div>Error: {error}</div>}
-  //   </div>
-  <ul className='invitePlayer-ul'>
-  <li className='invitePlayer-li' >Nytt projekt +
-  <InvitePlayers url={props.url} />
-  </li>
+    // <div>
+    //   <input
+    //     type="text"
+    //     placeholder="Användarnamn"
+    //     value={userName}
+    //     onChange={(e) => setUserName(e.target.value)}
+    //   />
+    //   <button onClick={handleAddUser}>Invite Player</button>
+    //   {responseMessage && <div>{responseMessage}</div>}
+    //   {error && <div>Error: {error}</div>}
+    // </div>
+   <ul className='invitePlayer-ul'>
+   <li className='invitePlayer-li' >Nytt projekt +
+      </li>
 </ul>
   );
-}
+ }
 
 export default InvitePlayers;

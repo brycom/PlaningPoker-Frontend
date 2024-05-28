@@ -27,31 +27,43 @@ const StatisticsPage: React.FC<StatisticsPageProps> = ({ projectId, onBackToHome
   const [averageVotes, setAverageVotes] = useState<number | null>(null);
   const [averageVoteForIssue, setAverageVoteForIssue] = useState<number | null>(null);
   const [issuesWithHighVotes, setIssuesWithHighVotes] = useState<Issue[]>([]);
-  const [threshold, setThreshold] = useState<number>(4.0); // Threshold for choosen project
-  const [selectedIssueId, setSelectedIssueId] = useState<string | null>(null);
+  const [threshold, setThreshold] = useState<number>(4.0); // Example threshold
 
   useEffect(() => {
     const fetchAverageVotes = async () => {
-      const result = await getAverageVotes(projectId); // Dynamiskt hämtar genomsnittliga röster för projektet
-      setAverageVotes(result);
+      try {
+        const result = await getAverageVotes(projectId);
+        setAverageVotes(result);
+      } catch (error) {
+        console.error('Error fetching average votes:', error);
+      }
     };
 
     const fetchAverageVoteForIssue = async () => {
-      if (selectedIssueId) {
-        const result = await getAverageVoteForIssue(selectedIssueId); // Dynamiskt hämtar genomsnittliga röster för den valda issue
+      try {
+        const issueId = "some-issue-id"; // Replace with actual issue ID
+        const result = await getAverageVoteForIssue(issueId);
         setAverageVoteForIssue(result);
+      } catch (error) {
+        console.error('Error fetching average vote for issue:', error);
       }
     };
 
     const fetchIssuesWithHighVotes = async () => {
-      const result = await getIssuesWithHighVotes(projectId, threshold); // Dynamiskt hämtar issues med höga röster för projektet och tröskelvärdet
-      setIssuesWithHighVotes(result);
+      try {
+        const result = await getIssuesWithHighVotes(projectId, threshold);
+        console.log('Issues with high votes:', result);
+        setIssuesWithHighVotes(result);
+      } catch (error) {
+        console.error('Error fetching issues with high votes:', error);
+        setIssuesWithHighVotes([]);
+      }
     };
 
     fetchAverageVotes();
     fetchAverageVoteForIssue();
     fetchIssuesWithHighVotes();
-  }, [projectId, threshold, selectedIssueId]);
+  }, [projectId, threshold]);
 
   return (
     <div>
@@ -62,18 +74,12 @@ const StatisticsPage: React.FC<StatisticsPageProps> = ({ projectId, onBackToHome
         <p>{averageVotes !== null ? averageVotes : 'Loading...'}</p>
       </div>
       <div>
-        <h3>Average Vote for Issue</h3>
-        <select onChange={(e) => setSelectedIssueId(e.target.value)}>
-          <option value="">Select an Issue</option>
-          {issuesWithHighVotes.map((issue) => (
-            <option key={issue.id} value={issue.id}>{issue.issueName}</option>
-          ))}
-        </select>
+        <h3>Average Vote for Issue: </h3>
         <p>{averageVoteForIssue !== null ? averageVoteForIssue : 'Loading...'}</p>
       </div>
       <div>
         <h3>Issues with Votes Above: {threshold} - tröskelvärde</h3>
-        {issuesWithHighVotes.length > 0 ? (
+        {Array.isArray(issuesWithHighVotes) && issuesWithHighVotes.length > 0 ? (
           <ul>
             {issuesWithHighVotes.map((issue) => (
               <li key={issue.id}>

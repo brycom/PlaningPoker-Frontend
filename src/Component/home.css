@@ -1,26 +1,28 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
 
 .homeHeader {
-    text-align: center;
-    font-size: 70px;
-    font-weight: bold;
-    color: rgb(167, 231, 167);
-    text-shadow: 2px 2px 2px black;
-    margin-top: 0px;
-    margin-bottom: 700px;
+  display: flex;
+  text-align: center;
+  font-size: 70px;
+  font-weight: bold;
+  color: rgb(167, 231, 167);
+  text-shadow: 2px 2px 2px black;
 }
 
 
-
 .homeContainer {
-    background-image: url('src/assets/background_planingpoker.png');
-    background-size: cover; 
-    background-position: center; 
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-  
- 
-  
+  background-image: url("src/assets/background_planingpoker.png");
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}

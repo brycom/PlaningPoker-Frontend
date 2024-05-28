@@ -1,52 +1,136 @@
-import React, { useState } from "react";
-import StartProject from "../Pages/startProject";
+import React, { useEffect, useState } from "react";
 import InvitePage from "../Pages/invitePage";
-import Statistics from "../Pages/Statistics";
+import StatisticsPage from "../Pages/StatisticsPage"; // Uppdaterad import
 import Register from "./register";
 import Login from "./login";
 import "./navbar.css";
+import ProjectList from "./projectList";
+import InvitePlayers from "./invitePlayer";
+
 
 interface Props {
-    url: string;
+  url: string;
+  selectedProject: string;
+  setSelectedProject: Function;
 }
 
+const Navbar: React.FC<Props> = ({
+  url,
+  selectedProject,
+  setSelectedProject,
+}) => {
+  const [selectedOption, setSelectedOption] = useState<string | null>(null);
+  const [loginButtonVisible, setLoginButtonVisible] = useState(true);
 
-const Navbar:React.FC<Props> = ({url}) => {
-    const[selectedOption, setSelectedOption] = useState<string | null>(null)
-
-    const handleNavbarOptionClick = (option: string) => {
-        setSelectedOption(option)
+  const handleNavbarOptionClick = (option: string) => {
+    setSelectedOption(option);
+    if (option === "Login" || option === "Register") {
+      setLoginButtonVisible(false);
     }
-    const handleBackToHomeClick = () => {
-        setSelectedOption(null);
-    };
-   return(
-    <div className="navbarContainer">
-         {!selectedOption && (
-            <div className="navbarContent">
-        
-            <div className="navbarButtonContainer">
-              
-                <button className="navbarButton" onClick={() => handleNavbarOptionClick("StartProject")}>Starta projekt</button>
-                <button className="navbarButton" onClick={() => handleNavbarOptionClick("InvitePage")}>Bjuda in</button>
-                <button className="navbarButton" onClick={() => handleNavbarOptionClick("StatisticsPage")}>Statistik</button>
-            </div>
-            <div className="navbarButtonUserContainer">
-                <button className="navbarButtonUser" onClick={() => handleNavbarOptionClick("Register")}>Registrera</button> 
-                <button className="navbarButtonUser" onClick={() => handleNavbarOptionClick("Login")}>Logga in</button>
-            </div>
-            </div>
-            
-            )}
-            {/* {selectedOption === "Home" && <Home />} */}
-            {selectedOption === "StartProject" && <StartProject url={url} onBackToHome={handleBackToHomeClick}/>}
-            {selectedOption === "InvitePage" && <InvitePage url={url} onBackToHome={handleBackToHomeClick} />}
-            {selectedOption === "StatisticsPage" && <Statistics url={url} onBackToHome={handleBackToHomeClick}/>}
-            {selectedOption === "Register" && <Register url={url}/>}
-            {selectedOption === "Login" && <Login url={url} />}
+  };
+  const handleBackToHomeClick = () => {
+    setSelectedOption(null);
+  };
 
-            </div>
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  useEffect(() => {
+    let token = localStorage.getItem("auth_token");
+    if (token !== null) {
+      setIsAuthenticated(true);
+    }
+  }, [handleNavbarOptionClick]);
+  console.log(isAuthenticated);
+
+  const logout = () => {
+    console.log("Logging out");
+    setIsAuthenticated(false);
+    localStorage.clear();
+    window.location.href = "/";
+  };
+
+  return (
+    <div className="navbarContainer">
+      {
+        <div className="navbarContent">
+          <div className="navbarButtonContainer">
+            {isAuthenticated && (
+              <div className="projectlist-container">
+                <button className="navbarButton" id="projectlist-btn">
+                  projectList
+                </button>
+                <ProjectList
+                  url={url}
+                  selectedProject={selectedProject}
+                  setSelectedProject={setSelectedProject}
+                  setSelectedOption={setSelectedOption}
+                />
+              </div>
+            )}
             
-   )
-}
-export default Navbar   
+            {isAuthenticated && (
+              <div className="projectlist-container">
+              <button
+                className="navbarButton" id="projectlist-btn"
+               
+                onClick={() => handleNavbarOptionClick("InvitePage")}
+              >
+                Bjuda in
+              </button>
+              <InvitePlayers url={url} selectedProject={selectedProject} />
+              </div>
+            )}
+
+           
+           
+            {isAuthenticated && (
+              <button
+                className="navbarButton"
+                onClick={() => handleNavbarOptionClick("StatisticsPage")}
+              >
+                Statistik
+              </button>
+            )}
+          </div>
+          <div className="navbarButtonUserContainer">
+            {!isAuthenticated && loginButtonVisible && (
+              <button
+                className="navbarButtonUser"
+                onClick={() => handleNavbarOptionClick("Register")}
+              >
+                Registrera
+              </button>
+            )}
+            {!isAuthenticated && loginButtonVisible && (
+              <button
+                className="navbarButtonUser"
+                onClick={() => handleNavbarOptionClick("Login")}
+              >
+                Logga in
+              </button>
+            )}
+            {isAuthenticated && (
+              <button className="navbarButtonUser" onClick={logout}>
+                Logga ut
+              </button>
+            )}
+          </div>
+        </div>
+      }
+      {/* {selectedOption === "Home" && <Home />} */}
+      {/* {selectedOption === "StartProject" && <StartProject url={url}/>} */}
+      {selectedOption === "InvitePage" && (
+        <InvitePage url={url} onBackToHome={handleBackToHomeClick} />
+      )}
+      {selectedOption === "StatisticsPage" && (
+        <StatisticsPage
+          url={url}
+          projectId={selectedProject}
+          onBackToHome={handleBackToHomeClick}
+        />
+      )}
+      {selectedOption === "Register" && <Register url={url} />}
+      {selectedOption === "Login" && <Login url={url} />}
+    </div>
+  );
+};
+export default Navbar;

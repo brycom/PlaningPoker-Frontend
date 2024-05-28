@@ -1,20 +1,48 @@
 import Navbar from "../Component/navbar";
-import "../Component/home.css"
+import PokerTable from "../Component/pokerTable";
+import "../Component/home.css";
 
-interface Props{
-    url: string
-}
-const Home:React.FC<Props> = ({url}) => {
+import { useState, useEffect } from "react";
 
-    return (
-        <>
-         <div className="homeContainer">
-        <Navbar url={url}/>
-        <h1 className="homeHeader">Planing Poker</h1>
-       
-       </div>
-      
-            </>
-    )
+interface Props {
+  url: string;
+  selectedProject: string;
+  setSelectedProject: Function;
 }
-export default Home
+const Home: React.FC<Props> = ({
+  url,
+  selectedProject,
+  setSelectedProject,
+}) => {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [selectedIssue, setSelectedIssue] = useState<string>("");
+  useEffect(() => {
+    let token = localStorage.getItem("auth_token");
+    if (token !== null) {
+      setIsAuthenticated(true);
+    }
+  });
+  console.log(isAuthenticated);
+
+  return (
+    <>
+      <div className="homeContainer">
+        <Navbar
+          url={url}
+          selectedProject={selectedProject}
+          setSelectedProject={setSelectedProject}
+        />
+        <h1 className="homeHeader">Planning Poker</h1>
+        {!isAuthenticated && <h1>Logga in!</h1>}
+
+        <PokerTable
+          projectId={selectedProject}
+          issueId={selectedIssue}
+          url={url}
+          setSelectedIssue={setSelectedIssue}
+        />
+      </div>
+    </>
+  );
+};
+export default Home;

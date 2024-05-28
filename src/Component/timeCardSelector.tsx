@@ -15,7 +15,7 @@ interface Prop {
 
 const timeCards: number[] = [1, 2, 3, 5, 8, 13, 21];
 
-const TimeCardSelector: React.FC<Prop> = ({ url, projectId, issueId, updateIssueList, setUpdateIssueList}) => {
+const TimeCardSelector: React.FC<Prop> = ({ url, projectId, issueId, setUpdateIssueList}) => {
   const [selectedCard, setSelectedCard] = useState<number>();
   console.log(url, projectId, issueId);
 

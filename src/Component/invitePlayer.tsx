@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState } from "react";
+import  { useState } from "react";
 import "../Component/navbar.css"
 
 interface Props{
@@ -9,8 +9,8 @@ interface Props{
 
 function InvitePlayers(props: Props) {
   const [userName, setUserName] = useState("");
-  const [responseMessage, setResponseMessage] = useState("");
-  const [error, setError] = useState("");
+  const [, setResponseMessage] = useState("");
+  const [, setError] = useState("");
   const token = localStorage.getItem("auth_token");
 
   const handleAddUser = async () => {

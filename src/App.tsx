@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./App.css";
 import Home from "./Pages/home";
-import PokerTable from "./Component/pokerTable";
+
 
 function App() {
 

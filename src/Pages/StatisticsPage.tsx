@@ -27,7 +27,7 @@ const StatisticsPage: React.FC<StatisticsPageProps> = ({ projectId, onBackToHome
   const [averageVotes, setAverageVotes] = useState<number | null>(null);
   const [averageVoteForIssue, setAverageVoteForIssue] = useState<number | null>(null);
   const [issuesWithHighVotes, setIssuesWithHighVotes] = useState<Issue[]>([]);
-  const [threshold, setThreshold] = useState<number>(4.0); // Example threshold
+  const [threshold] = useState<number>(4.0); // Example threshold
 
   useEffect(() => {
     const fetchAverageVotes = async () => {

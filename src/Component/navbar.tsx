@@ -5,6 +5,8 @@ import Register from "./register";
 import Login from "./login";
 import "./navbar.css";
 import ProjectList from "./projectList";
+import InvitePlayers from "./invitePlayer";
+
 
 interface Props {
   url: string;
@@ -64,14 +66,21 @@ const Navbar: React.FC<Props> = ({
                 />
               </div>
             )}
+            
             {isAuthenticated && (
+              <div className="projectlist-container">
               <button
                 className="navbarButton"
                 onClick={() => handleNavbarOptionClick("InvitePage")}
               >
                 Bjuda in
               </button>
+              <InvitePlayers url={url} />
+              </div>
             )}
+
+           
+           
             {isAuthenticated && (
               <button
                 className="navbarButton"

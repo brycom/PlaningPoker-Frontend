@@ -76,7 +76,7 @@ const Navbar: React.FC<Props> = ({
               >
                 Bjuda in
               </button>
-              <InvitePlayers url={url} />
+              <InvitePlayers url={url} selectedProject={selectedProject} />
               </div>
             )}
 

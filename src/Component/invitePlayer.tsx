@@ -3,7 +3,8 @@ import React, { useState } from "react";
 import "../Component/navbar.css"
 
 interface Props{
-  url: string
+  url: string;
+  selectedProject: string;
 }
 
 function InvitePlayers(props: Props) {
@@ -17,20 +18,22 @@ function InvitePlayers(props: Props) {
       setError("Ange ett giltigt användar-ID");
       return;
     }
-    try {
-      await axios.post(props.url+"/project/projects/addUser", { userName, 
+    try {   await axios.post(
+      `${props.url}/project/projects/addUser`,
+      { username: userName, projektId: props.selectedProject },
+      {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
-       });
-      
-      setResponseMessage("Användare " + userName + " tillagd!");
-      setUserName("");
-    } catch {
-      setError("Funkar inte! ");
-    }
-  };
+      }
+    );
+    setResponseMessage(`Användare ${userName} tillagd!`);
+    setUserName("");
+  } catch {
+    setError("Funkar inte!");
+  }
+};
 
    return (
     // <div>
@@ -46,6 +49,15 @@ function InvitePlayers(props: Props) {
     // </div>
    <ul className='invitePlayer-ul'>
    <li className='invitePlayer-li' >Nytt projekt +
+   <form onSubmit= { (e) =>{handleAddUser();
+    e.preventDefault();
+   }}>
+    <input
+     type="text"
+     placeholder="Användarnamn"
+     onChange={(e) => setUserName(e.target.value)}
+     />
+   </form>
       </li>
 </ul>
   );

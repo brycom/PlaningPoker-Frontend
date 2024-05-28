@@ -6,7 +6,6 @@ const BASE_URL = 'https://seal-app-3ryxu.ondigitalocean.app/statistics';
 
 const getToken = () => {
   const token = localStorage.getItem('auth_token');
-  console.log('Token:', token); 
   return token;
 };
 

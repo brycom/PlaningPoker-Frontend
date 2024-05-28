@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import InvitePage from "../Pages/invitePage";
+
 import StatisticsPage from "../Pages/StatisticsPage"; // Uppdaterad import
 import Register from "./register";
 import Login from "./login";
@@ -12,15 +12,19 @@ interface Props {
   url: string;
   selectedProject: string;
   setSelectedProject: Function;
+  setUpdatePlayers: Function;
 }
 
 const Navbar: React.FC<Props> = ({
   url,
   selectedProject,
   setSelectedProject,
+  setUpdatePlayers
 }) => {
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
   const [loginButtonVisible, setLoginButtonVisible] = useState(true);
+  const[visible,setVisible]= useState(true);
+  
 
   const handleNavbarOptionClick = (option: string) => {
     setSelectedOption(option);
@@ -39,10 +43,9 @@ const Navbar: React.FC<Props> = ({
       setIsAuthenticated(true);
     }
   }, [handleNavbarOptionClick]);
-  console.log(isAuthenticated);
+
 
   const logout = () => {
-    console.log("Logging out");
     setIsAuthenticated(false);
     localStorage.clear();
     window.location.href = "/";
@@ -62,21 +65,17 @@ const Navbar: React.FC<Props> = ({
                   url={url}
                   selectedProject={selectedProject}
                   setSelectedProject={setSelectedProject}
-                  setSelectedOption={setSelectedOption}
-                />
+                  setSelectedOption={setSelectedOption} setVisible={setVisible} visible={visible}                />
               </div>
             )}
             
             {isAuthenticated && (
               <div className="projectlist-container">
               <button
-                className="navbarButton" id="projectlist-btn"
-               
-                onClick={() => handleNavbarOptionClick("InvitePage")}
-              >
+                className="navbarButton" id="projectlist-btn"              >
                 Bjuda in
               </button>
-              <InvitePlayers url={url} selectedProject={selectedProject} />
+              <InvitePlayers visible={visible} setVisible={setVisible} setUpdatePlayers={setUpdatePlayers} url={url} selectedProject={selectedProject} />
               </div>
             )}
 
@@ -92,7 +91,7 @@ const Navbar: React.FC<Props> = ({
             )}
           </div>
           <div className="navbarButtonUserContainer">
-            {!isAuthenticated && loginButtonVisible && (
+            {!isAuthenticated &&  (
               <button
                 className="navbarButtonUser"
                 onClick={() => handleNavbarOptionClick("Register")}
@@ -100,7 +99,7 @@ const Navbar: React.FC<Props> = ({
                 Registrera
               </button>
             )}
-            {!isAuthenticated && loginButtonVisible && (
+            {!isAuthenticated &&  (
               <button
                 className="navbarButtonUser"
                 onClick={() => handleNavbarOptionClick("Login")}
@@ -116,11 +115,7 @@ const Navbar: React.FC<Props> = ({
           </div>
         </div>
       }
-      {/* {selectedOption === "Home" && <Home />} */}
-      {/* {selectedOption === "StartProject" && <StartProject url={url}/>} */}
-      {selectedOption === "InvitePage" && (
-        <InvitePage url={url} onBackToHome={handleBackToHomeClick} />
-      )}
+
       {selectedOption === "StatisticsPage" && (
         <StatisticsPage
           url={url}
@@ -128,7 +123,7 @@ const Navbar: React.FC<Props> = ({
           onBackToHome={handleBackToHomeClick}
         />
       )}
-      {selectedOption === "Register" && <Register url={url} />}
+      {selectedOption === "Register" && <Register selectedOption={selectedOption} setSelectedOption={setSelectedOption} url={url} />}
       {selectedOption === "Login" && <Login url={url} />}
     </div>
   );

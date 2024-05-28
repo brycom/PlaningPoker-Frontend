@@ -14,14 +14,17 @@ interface Props {
   issueId: string;
   url: string;
   setSelectedIssue: Function;
+  updatePlayers:boolean
+  setUpdatePlayers:Function;
 }
 
-const PokerTable: React.FC<Props> = ({ projectId, url }) => {
+const PokerTable: React.FC<Props> = ({ projectId, url,setUpdatePlayers,updatePlayers }) => {
   const [players, setPlayers] = useState<Player[]>([]);
   const token = localStorage.getItem("auth_token");
 
   const [selectedIssue, setSelectedIssue] = useState<string | null>(null);
   const [updateIssueList, setUpdateIssueList] = useState<boolean>(false);
+  
 
   useEffect(() => {
     axios
@@ -30,20 +33,28 @@ const PokerTable: React.FC<Props> = ({ projectId, url }) => {
           Authorization: `Bearer ${token}`,
         },
       })
-      .then((response) => setPlayers(response.data))
+      .then((response) => {
+        setPlayers(response.data)
+        setUpdatePlayers(false);
+      })
       .catch((error) => console.error("Error fetching players:", error));
-  }, [projectId]);
+  }, [projectId, updatePlayers]);
   
 
   return (
     <div className="poker-table">
+      {selectedIssue&&<button className="navbarButton" id="close-btn" onClick={()=>setSelectedIssue("")}>X</button>}
       <h1>Poker Table</h1>
       <PlayerList players={players} />
       {selectedIssue && (
         <TimeCardSelector
+        setUpdatePlayers={setUpdatePlayers}
           url={url}
           projectId={projectId}
-          issueId={selectedIssue} updateIssueList={updateIssueList} setUpdateIssueList={setUpdateIssueList}  />
+          issueId={selectedIssue}
+          
+           updateIssueList={updateIssueList}
+            setUpdateIssueList={setUpdateIssueList}  />
       )}
       <IssueList
         projectId={projectId}

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./login.css"
 
 const setAuthHeader = (token: string | null): void => {
   if (token !== null) {
@@ -29,7 +30,6 @@ export function Login(props: Props) {
 
       if (response.status === 200) {
         const data = await response.json();
-        console.log(data);
         setAuthHeader(data["token"]);
         localStorage.setItem("userId", data.user.userId);
         window.location.href = "/";
@@ -43,28 +43,29 @@ export function Login(props: Props) {
   };
 
   return (
-    <form onSubmit={onSubmit}>
-      <div>
-        <label htmlFor="login">Login</label>
-        <input
-          name="login"
-          value={username}
-          onChange={(event) => setUserName(event.target.value)}
-        />
-      </div>
+    <form className="login-form" onSubmit={onSubmit}>
+  <div>
+    <label htmlFor="login">Login</label>
+    <input
+      name="login"
+      value={username}
+      onChange={(event) => setUserName(event.target.value)}
+    />
+  </div>
 
-      <div>
-        <label htmlFor="password">Password</label>
-        <input
-          name="password"
-          type="password"
-          value={password}
-          onChange={(event) => setPassword(event.target.value)}
-        />
-      </div>
+  <div>
+    <label htmlFor="password">Password</label>
+    <input
+      name="password"
+      type="password"
+      value={password}
+      onChange={(event) => setPassword(event.target.value)}
+    />
+  </div>
 
-      <button type="submit">Sign In</button>
-    </form>
+  <button type="submit">Sign In</button>
+</form>
+
   );
 }
 

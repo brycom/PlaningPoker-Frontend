@@ -21,6 +21,7 @@ const PokerTable: React.FC<Props> = ({ projectId, url }) => {
   const token = localStorage.getItem("auth_token");
 
   const [selectedIssue, setSelectedIssue] = useState<string | null>(null);
+  const [updateIssueList, setUpdateIssueList] = useState<boolean>(false);
 
   useEffect(() => {
     axios
@@ -32,6 +33,7 @@ const PokerTable: React.FC<Props> = ({ projectId, url }) => {
       .then((response) => setPlayers(response.data))
       .catch((error) => console.error("Error fetching players:", error));
   }, [projectId]);
+  
 
   return (
     <div className="poker-table">
@@ -41,14 +43,15 @@ const PokerTable: React.FC<Props> = ({ projectId, url }) => {
         <TimeCardSelector
           url={url}
           projectId={projectId}
-          issueId={selectedIssue}
-        />
+          issueId={selectedIssue} updateIssueList={updateIssueList} setUpdateIssueList={setUpdateIssueList}  />
       )}
       <IssueList
         projectId={projectId}
         url={url}
         selectedIssue={selectedIssue}
         setSelectedIssue={setSelectedIssue}
+        updateIssueList={updateIssueList}
+        setUpdateIssueList={setUpdateIssueList}
       />
     </div>
   );

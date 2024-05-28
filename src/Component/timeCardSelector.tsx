@@ -9,11 +9,13 @@ interface Prop {
   url: string;
   projectId: string;
   issueId: string;
+  updateIssueList: boolean;
+  setUpdateIssueList:Function;
 }
 
 const timeCards: number[] = [1, 2, 3, 5, 8, 13, 21];
 
-const TimeCardSelector: React.FC<Prop> = ({ url, projectId, issueId }) => {
+const TimeCardSelector: React.FC<Prop> = ({ url, projectId, issueId, updateIssueList, setUpdateIssueList}) => {
   const [selectedCard, setSelectedCard] = useState<number>();
   console.log(url, projectId, issueId);
 
@@ -55,6 +57,7 @@ const TimeCardSelector: React.FC<Prop> = ({ url, projectId, issueId }) => {
       );
       console.log("Data: " + res.data);
       setVote([...vote, res.data]);
+      setUpdateIssueList(true);
     } catch (error) {
       console.error("Error adding issue", error);
     }

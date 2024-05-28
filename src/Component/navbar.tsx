@@ -18,9 +18,13 @@ const Navbar: React.FC<Props> = ({
   setSelectedProject,
 }) => {
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
+  const [loginButtonVisible, setLoginButtonVisible] = useState(true);
 
   const handleNavbarOptionClick = (option: string) => {
     setSelectedOption(option);
+    if (option === "Login" || option === "Register") {
+      setLoginButtonVisible(false);
+    }
   };
   const handleBackToHomeClick = () => {
     setSelectedOption(null);
@@ -78,7 +82,7 @@ const Navbar: React.FC<Props> = ({
             )}
           </div>
           <div className="navbarButtonUserContainer">
-            {!isAuthenticated && (
+            {!isAuthenticated && loginButtonVisible && (
               <button
                 className="navbarButtonUser"
                 onClick={() => handleNavbarOptionClick("Register")}
@@ -86,7 +90,7 @@ const Navbar: React.FC<Props> = ({
                 Registrera
               </button>
             )}
-            {!isAuthenticated && (
+            {!isAuthenticated && loginButtonVisible && (
               <button
                 className="navbarButtonUser"
                 onClick={() => handleNavbarOptionClick("Login")}

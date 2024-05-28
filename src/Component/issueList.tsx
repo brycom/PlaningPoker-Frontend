@@ -21,12 +21,16 @@ interface IssueListProps {
   url: string;
   selectedIssue: string | null;
   setSelectedIssue: Function;
+  setUpdateIssueList: Function;
+  updateIssueList: boolean;
 }
 const IssueList: React.FC<IssueListProps> = ({
   projectId,
   url,
   selectedIssue,
   setSelectedIssue,
+  updateIssueList,
+  setUpdateIssueList
 }) => {
   const [issues, setIssues] = useState<Issue[]>([]);
   const [newIssueName, setNewIssueName] = useState<string>("");
@@ -48,6 +52,7 @@ const IssueList: React.FC<IssueListProps> = ({
         });
         setIssues(res.data);
         console.log("Fetched issues: ", res.data);
+        setUpdateIssueList(false);
       } catch (error) {
         console.error(error);
       }
@@ -55,7 +60,7 @@ const IssueList: React.FC<IssueListProps> = ({
     if (token && projectId) {
       fetchIssues();
     }
-  }, [token, projectId, currentIssue]);
+  }, [token, projectId, currentIssue,updateIssueList]);
 
   const handleAddIssue = async () => {
     if (!newIssueName) {

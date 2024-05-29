@@ -55,6 +55,7 @@ function InvitePlayers(props: Props) {
      placeholder="Användarnamn"
      onChange={(e) => setUserName(e.target.value)}
      />
+     <button>Bjud in</button>
    </form>
       </li>
 </ul>}

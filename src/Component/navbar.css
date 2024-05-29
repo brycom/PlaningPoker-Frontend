@@ -111,3 +111,28 @@
   display: block;
 }
 
+.invitePlayer-li input{
+  border: none;
+  height: 30px;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+.invitePlayer-li button{
+  right: auto;
+  margin-top: 5px;
+  background-color: #c1d3e7;
+  color: white;
+  text-shadow: 1px 1px 2px black;
+  border-radius: 5px;
+  border: none;
+  
+  cursor: pointer;
+  font-size: 20px;
+  transition: background-color 0.3s ease;
+}
+.invitePlayer-li button:hover {
+  background-color: #63a4eb;
+}
+
+

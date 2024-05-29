@@ -1,4 +1,4 @@
-
+/* 
 import axios from 'axios';
 
 // const BASE_URL = 'http://localhost:8080/statistics';
@@ -39,7 +39,7 @@ export const getIssuesWithHighVotes = async (projectId: string, threshold: numbe
   return response.data;
 };
 
-
+ */
 
 // import axios from 'axios';
 

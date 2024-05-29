@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { getAverageVotes } from './api/statstic';
+/* import React, { useEffect, useState } from 'react';
+
 
 interface AverageVotesProps {
   projectId: string;
@@ -24,4 +24,4 @@ const AverageVotes: React.FC<AverageVotesProps> = ({ projectId }) => {
   );
 };
 
-export default AverageVotes;
+export default AverageVotes; */

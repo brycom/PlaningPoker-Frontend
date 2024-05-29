@@ -172,16 +172,16 @@ const IssueList: React.FC<IssueListProps> = ({
         {issues.map((issue) => (
           <li className="issueListItem" key={issue.issueId}>
             <div>
-              <p>ID: {issue.issueId}</p>
+              {/* <p>ID: {issue.issueId}</p> */}
               <p>Issue Name: {issue.issuename}</p>
-              <p>
+{/*               <p>
                 Votes:{" "}
                 {issue.votes.map((vote) => (
                   <span key={vote.voteId}>
                     User {vote.userId}: {vote.vote}
                   </span>
                 ))}
-              </p>
+              </p> */}
               <p>
                 Start Time:{" "}
                 {issue.startTime

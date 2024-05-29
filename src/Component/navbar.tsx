@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import StatisticsPage from "../Pages/StatisticsPage"; // Uppdaterad import
+/* import StatisticsPage from "../Pages/StatisticsPage"; */ // Uppdaterad import
 import Register from "./register";
 import Login from "./login";
 import "./navbar.css";
@@ -13,28 +13,30 @@ interface Props {
   selectedProject: string;
   setSelectedProject: Function;
   setUpdatePlayers: Function;
+  selectedOption: string | null;
+  setSelectedOption:Function
 }
 
 const Navbar: React.FC<Props> = ({
   url,
   selectedProject,
   setSelectedProject,
-  setUpdatePlayers
+  setUpdatePlayers,
+  selectedOption,
+  setSelectedOption
 }) => {
-  const [selectedOption, setSelectedOption] = useState<string | null>(null);
-  const [loginButtonVisible, setLoginButtonVisible] = useState(true);
+  
+  //const [loginButtonVisible, setLoginButtonVisible] = useState(true);
   const[visible,setVisible]= useState(true);
   
 
   const handleNavbarOptionClick = (option: string) => {
     setSelectedOption(option);
     if (option === "Login" || option === "Register") {
-      setLoginButtonVisible(false);
+      //setLoginButtonVisible(false);
     }
   };
-  const handleBackToHomeClick = () => {
-    setSelectedOption(null);
-  };
+
 
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   useEffect(() => {
@@ -116,13 +118,13 @@ const Navbar: React.FC<Props> = ({
         </div>
       }
 
-      {selectedOption === "StatisticsPage" && (
+{/*       {selectedOption === "StatisticsPage" && (
         <StatisticsPage
           url={url}
           projectId={selectedProject}
           onBackToHome={handleBackToHomeClick}
         />
-      )}
+      )} */}
       {selectedOption === "Register" && <Register selectedOption={selectedOption} setSelectedOption={setSelectedOption} url={url} />}
       {selectedOption === "Login" && <Login url={url} />}
     </div>

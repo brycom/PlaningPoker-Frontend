@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+/* import React, { useEffect, useState } from 'react';
 import { getAverageVotes, getAverageVoteForIssue, getIssuesWithHighVotes } from '../Component/statistic/api/statstic';
 
 interface Vote {
@@ -27,6 +27,7 @@ const StatisticsPage: React.FC<StatisticsPageProps> = ({ projectId, onBackToHome
   const [averageVotes, setAverageVotes] = useState<number | null>(null);
   const [averageVoteForIssue, setAverageVoteForIssue] = useState<number | null>(null);
   const [issuesWithHighVotes, setIssuesWithHighVotes] = useState<Issue[]>([]);
+
   const [threshold] = useState<number>(4.0); // Example threshold
 
   useEffect(() => {
@@ -67,7 +68,7 @@ const StatisticsPage: React.FC<StatisticsPageProps> = ({ projectId, onBackToHome
 
   return (
     <div>
-      <button onClick={onBackToHome}>Back to Home</button>
+{      <button onClick={onBackToHome}>Back to Home</button>
       <h2>Statistics for Project: {projectId}</h2>
       <div>
         <h3>Average Votes per Issue</h3>
@@ -100,9 +101,10 @@ const StatisticsPage: React.FC<StatisticsPageProps> = ({ projectId, onBackToHome
         ) : (
           <p>No issues found</p>
         )}
-      </div>
+      </div>}
     </div>
   );
 };
 
 export default StatisticsPage;
+ */

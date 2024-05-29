@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+/* import React, { useEffect, useState } from 'react';
 //import { getIssuesWithHighVotes } from './api/statstic';
 import "./statistics.css"
 
@@ -29,11 +29,11 @@ interface IssuesWithHighVotesProps {
 
 }
 
-const IssuesWithHighVotes: React.FC<IssuesWithHighVotesProps> = ({issues, projectId, threshold,averageVote }) => {
-  /* const [issues, setIssues] = useState<Issue[]>([]); */
+const IssuesWithHighVotes: React.FC<IssuesWithHighVotesProps> = ({ projectId, threshold,averageVote }) => {
+  const [issues, setIssues] = useState<Issue[]>([]);
   const [error, setError] = useState<string | null>(null);
 
-/*   useEffect(() => {
+  useEffect(() => {
     const fetchData = async () => {
       try {
         const result = await getIssuesWithHighVotes(projectId, threshold);
@@ -48,7 +48,7 @@ const IssuesWithHighVotes: React.FC<IssuesWithHighVotesProps> = ({issues, projec
 
   if (error) {
     return <div>{error}</div>;
-  } */
+  }
 
   return (
     <div>
@@ -80,3 +80,4 @@ const IssuesWithHighVotes: React.FC<IssuesWithHighVotesProps> = ({issues, projec
 };
 
 export default IssuesWithHighVotes;
+ */

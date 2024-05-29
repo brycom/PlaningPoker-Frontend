@@ -21,10 +21,6 @@ interface Issue {
     userId: string;
     vote: number;
   }
-  interface Time {
-    hours: number;
-    minutes: number;
-  }
 
 
 interface Props{

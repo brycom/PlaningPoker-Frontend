@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import { getIssuesWithHighVotes } from './api/statstic';
+/* import React, { useEffect, useState } from 'react';
+//import { getIssuesWithHighVotes } from './api/statstic';
+import "./statistics.css"
 
 interface Vote {
   voteId: string;
@@ -11,7 +12,7 @@ interface Vote {
 
 interface Issue {
   id: string;
-  issueName: string;
+  issuename: string;
   votes: Vote[];
   startTime: string;
   endTime: string;
@@ -22,9 +23,13 @@ interface Issue {
 interface IssuesWithHighVotesProps {
   projectId: string;
   threshold: number;
+  averageVote: number;
+  setAverageVote:Function;
+  issues: Issue[];
+
 }
 
-const IssuesWithHighVotes: React.FC<IssuesWithHighVotesProps> = ({ projectId, threshold }) => {
+const IssuesWithHighVotes: React.FC<IssuesWithHighVotesProps> = ({ projectId, threshold,averageVote }) => {
   const [issues, setIssues] = useState<Issue[]>([]);
   const [error, setError] = useState<string | null>(null);
 
@@ -49,16 +54,17 @@ const IssuesWithHighVotes: React.FC<IssuesWithHighVotesProps> = ({ projectId, th
     <div>
       <h3>Issues with Votes Above {threshold}</h3>
       {issues.length > 0 ? (
-        <ul>
+        <ul className="issues-container">
           {issues.map((issue) => (
-            <li key={issue.id}>
-              <p>Issue Name: {issue.issueName}</p>
+            <li key={issue.id} className="issue-item">
+              <h3>Genomsnitlig röst:{averageVote}</h3>
+              <p>Issue Name: {issue.issuename}</p>
               <p>Estimated Time: {issue.estimatedTime}</p>
               <p>Actual Time: {issue.actualTime}</p>
               <p>Start Time: {issue.startTime}</p>
               <p>End Time: {issue.endTime}</p>
               <p>Votes:</p>
-              <ul>
+              <ul style={{ listStyleType: 'none', padding: 0 }}>
                 {issue.votes.map(vote => (
                   <li key={vote.voteId}>{vote.vote}</li>
                 ))}
@@ -74,3 +80,4 @@ const IssuesWithHighVotes: React.FC<IssuesWithHighVotesProps> = ({ projectId, th
 };
 
 export default IssuesWithHighVotes;
+ */

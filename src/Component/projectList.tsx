@@ -8,6 +8,8 @@ interface Props {
     selectedProject: string;
     setSelectedProject: Function;
     url: string;
+    setVisible:Function;
+    visible: boolean;
 }
 
 interface Project {
@@ -46,6 +48,8 @@ const ProjectList: React.FC<Props> = (props) => {
             setProjectList(dataModifier);
             setUpdateList(false);
             setShowStartProject(false);
+            props.setSelectedProject(dataModifier[0].projectId);
+        
         } catch (error) {
             console.error(error);
         }
@@ -57,24 +61,24 @@ const ProjectList: React.FC<Props> = (props) => {
         }
     }, [token,updateList]);
 
-    useEffect(() => {
-        console.log(showStartProject)
-        
-    }, [showStartProject]);
-
     return (
-            
-            <ul className='projectlist-ul'>
+            <>
+            {props.visible&&<ul className='projectlist-ul'>
                 {projectList.map(project => (
                     <li className='projectlist-li' key={project.projectId} onClick={()=>{
                          props.setSelectedProject(project.projectId)
                          props.setSelectedOption("StartProject")
+                         props.setVisible(false)
+                         setTimeout(() => {
+                           props.setVisible(true)
+                         }, 1000);
                         }}>{project.projectname}</li>
                 ))}
                 <li className='projectlist-li' onClick={() => setShowStartProject(true)}>Nytt projekt +
                 {showStartProject&&<StartProject url={props.url} setShowStartProject={setShowStartProject} setUpdateList={setUpdateList}/>}
                 </li>
-            </ul>
+            </ul>}
+            </>
     );
 };
 

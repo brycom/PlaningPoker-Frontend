@@ -1,4 +1,8 @@
 .poker-table {
+  display: flex;
+  flex-direction: column; /* Default direction */
+  align-items: center;    /* Center content horizontally */
+  position: relative; 
   text-align: center;
   width: 800px;
   height: auto;
@@ -21,9 +25,6 @@ h2 {
   list-style: none;
 }
 .Voteknapp {
-  /* display: flex;
-  margin-left: 400px;
-  border-radius: 20px; */
 
   appearance: button;
   backface-visibility: hidden;
@@ -54,6 +55,15 @@ h2 {
   touch-action: manipulation;
   width: 20%;
   margin-left: 40px;
+  min-width: 120px;
+  
+  font-size: 20px;
+  font-weight:400;
+}
+.Voteknapp:hover, #close-btn:hover{
+  background-color: #3654fc;
+  font-weight:600;
+
 }
 
 .Voteknapp:disabled {
@@ -70,28 +80,35 @@ h2 {
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  gap: 10px; /* Mellanrum mellan knapparna */
-  padding: 20px; /* Justera efter behov */
+  gap: 10px; 
+  padding: 20px; 
 }
 
 .playercard {
   background-color: transparent;
   transition: all 0.3s ease-in-out;
-  font-size: 24px; /* Mindre storlek på siffran */
+  font-size: 24px; 
   padding: 8px;
   border-radius: 8px;
   text-align: center;
-  width: 50px; /* Justera storleken på knappen */
-  height: 50px; /* Justera storleken på knappen */
+  width: 50px; 
+  height: 50px; 
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .playercard:hover {
-  background-color: rgba(255, 255, 255, 0.1); /* Justera färgen efter behov */
-  border: 2px solid #4d68ff; /* Justera färgen på border efter behov */
-  transform: scale(1.1); /* Gör kortet lite större vid hover */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Lägg till en skugga för en 3D-effekt */
-  cursor: pointer; /* Ändrar pekaren till en hand när man hovrar */
+  background-color: rgba(255, 255, 255, 0.1); 
+  border: 2px solid #4d68ff; 
+  transform: scale(1.1); 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+  cursor: pointer; 
+}
+#close-btn {
+  position: absolute;
+  right: 10px;  
+  top: 10px;    
+  z-index: 1;  
+  background-color: #4d68ff; 
 }

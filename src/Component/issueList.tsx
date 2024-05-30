@@ -27,10 +27,10 @@ interface IssueListProps {
 const IssueList: React.FC<IssueListProps> = ({
   projectId,
   url,
-  selectedIssue,
+
   setSelectedIssue,
   updateIssueList,
-  setUpdateIssueList
+  setUpdateIssueList,
 }) => {
   const [issues, setIssues] = useState<Issue[]>([]);
   const [newIssueName, setNewIssueName] = useState<string>("");
@@ -51,8 +51,8 @@ const IssueList: React.FC<IssueListProps> = ({
           },
         });
         setIssues(res.data);
-        console.log("Fetched issues: ", res.data);
         setUpdateIssueList(false);
+        console.log(issues, res.data);
       } catch (error) {
         console.error(error);
       }
@@ -60,7 +60,7 @@ const IssueList: React.FC<IssueListProps> = ({
     if (token && projectId) {
       fetchIssues();
     }
-  }, [token, projectId, currentIssue,updateIssueList]);
+  }, [projectId, currentIssue, updateIssueList]);
 
   const handleAddIssue = async () => {
     if (!newIssueName) {
@@ -87,7 +87,6 @@ const IssueList: React.FC<IssueListProps> = ({
           },
         }
       );
-      console.log("Added issue:", res.data);
       setIssues([...issues, res.data]);
       setNewIssueName("");
       setError("");
@@ -108,8 +107,7 @@ const IssueList: React.FC<IssueListProps> = ({
           },
         }
       );
-      const actualTime = res.data; // Assuming actualTime is directly received from the server
-      console.log("Actual time:", actualTime);
+      const actualTime = res.data;
 
       setIssues(
         issues.map((issue) =>
@@ -141,7 +139,6 @@ const IssueList: React.FC<IssueListProps> = ({
           },
         }
       );
-      console.log("Updated issue:", res.data);
       setIssues(
         issues.map((issue) =>
           issue.issueId === issueId ? { ...issue, ...res.data } : issue
@@ -155,14 +152,12 @@ const IssueList: React.FC<IssueListProps> = ({
     }
   };
   const handleDeleteIssue = async (issueId: string) => {
-    console.log("Project id: ", projectId);
     try {
       await axios.delete(url + `/issue/${projectId}/${issueId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
-      console.log("Deleted issue:", issueId);
       setIssues(issues.filter((issue) => issue.issueId !== issueId));
     } catch (error) {
       console.error("Error deleting issue", error);
@@ -177,16 +172,16 @@ const IssueList: React.FC<IssueListProps> = ({
         {issues.map((issue) => (
           <li className="issueListItem" key={issue.issueId}>
             <div>
-              <p>ID: {issue.issueId}</p>
+              {/* <p>ID: {issue.issueId}</p> */}
               <p>Issue Name: {issue.issuename}</p>
-              <p>
+              {/*               <p>
                 Votes:{" "}
                 {issue.votes.map((vote) => (
                   <span key={vote.voteId}>
                     User {vote.userId}: {vote.vote}
                   </span>
                 ))}
-              </p>
+              </p> */}
               <p>
                 Start Time:{" "}
                 {issue.startTime
@@ -201,54 +196,78 @@ const IssueList: React.FC<IssueListProps> = ({
               </p>
               <p>Estimated Time:{issue.estimatedTime}</p>
               <p>Actual Time:{issue.actualTime}</p>
-              <button onClick={() => handleCloseIssue(issue.issueId)}>
+              <button
+                className="issue-btn"
+                onClick={() => handleCloseIssue(issue.issueId)}
+              >
                 Close
               </button>
-              <button onClick={() => handleUpdateIssue(issue)}>Update</button>
-              <button onClick={() => handleDeleteIssue(issue.issueId)}>
+              <button
+                className="issue-btn"
+                onClick={() => handleUpdateIssue(issue)}
+              >
+                Update
+              </button>
+              <button
+                className="issue-btn"
+                onClick={() => handleDeleteIssue(issue.issueId)}
+              >
                 Delete
               </button>
               <button
+                className="issue-btn"
                 onClick={() => {
-                  console.log(selectedIssue), setSelectedIssue(issue.issueId);
+                  setSelectedIssue(issue.issueId);
                 }}
               >
                 Start vote
               </button>
             </div>
+            {isUpdateFormVisible && currentIssue && (
+              <div>
+                <h3>Update Issue</h3>
+                <input
+                  type="text"
+                  value={updatedIssueName}
+                  onChange={(e) => setUpdatedIssueName(e.target.value)}
+                />
+                <button
+                  className="issue-btn"
+                  onClick={() => handleUpdateIssueSubmit(currentIssue.issueId)}
+                >
+                  Update Issue
+                </button>
+                <button
+                  className="issue-btn"
+                  onClick={() => setIsUpdateFormVisible(false)}
+                >
+                  Cancel
+                </button>
+                {error && <p>{error}</p>}
+              </div>
+            )}
           </li>
         ))}
+        {isFormVisible && (
+          <div>
+            <input
+              type="text"
+              value={newIssueName}
+              onChange={(e) => setNewIssueName(e.target.value)}
+            />
+            <button className="new-issue" onClick={handleAddIssue}>
+              Add Issue
+            </button>
+            {error && <p>{error}</p>}
+          </div>
+        )}
+        <button
+          className="new-issue"
+          onClick={() => setIsFormVisible(!isFormVisible)}
+        >
+          {isFormVisible ? "Cancel" : "+ Issue"}
+        </button>
       </ul>
-
-      {isFormVisible && (
-        <div>
-          <input
-            type="text"
-            value={newIssueName}
-            onChange={(e) => setNewIssueName(e.target.value)}
-          />
-          <button onClick={handleAddIssue}>Add Issue</button>
-          {error && <p>{error}</p>}
-        </div>
-      )}
-      <button onClick={() => setIsFormVisible(!isFormVisible)}>
-        {isFormVisible ? "Cancel" : "+ Issue"}
-      </button>
-      {isUpdateFormVisible && currentIssue && (
-        <div>
-          <h3>Update Issue</h3>
-          <input
-            type="text"
-            value={updatedIssueName}
-            onChange={(e) => setUpdatedIssueName(e.target.value)}
-          />
-          <button onClick={() => handleUpdateIssueSubmit(currentIssue.issueId)}>
-            Update Issue
-          </button>
-          <button onClick={() => setIsUpdateFormVisible(false)}>Cancel</button>
-          {error && <p>{error}</p>}
-        </div>
-      )}
     </div>
   );
 };

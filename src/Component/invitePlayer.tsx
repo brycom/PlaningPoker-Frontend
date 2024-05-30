@@ -5,6 +5,9 @@ import "../Component/navbar.css"
 interface Props{
   url: string;
   selectedProject: string;
+  setUpdatePlayers: Function;
+  visible: boolean;
+  setVisible: Function;
 }
 
 function InvitePlayers(props: Props) {
@@ -30,36 +33,33 @@ function InvitePlayers(props: Props) {
     );
     setResponseMessage(`Användare ${userName} tillagd!`);
     setUserName("");
+    props.setUpdatePlayers(true);
   } catch {
     setError("Funkar inte!");
   }
 };
 
    return (
-    // <div>
-    //   <input
-    //     type="text"
-    //     placeholder="Användarnamn"
-    //     value={userName}
-    //     onChange={(e) => setUserName(e.target.value)}
-    //   />
-    //   <button onClick={handleAddUser}>Invite Player</button>
-    //   {responseMessage && <div>{responseMessage}</div>}
-    //   {error && <div>Error: {error}</div>}
-    // </div>
-   <ul className='invitePlayer-ul'>
-   <li className='invitePlayer-li' >Nytt projekt +
+    <>
+   {props.visible &&<ul className='invitePlayer-ul'>
+   <li className='invitePlayer-li' >Ny Spelare +
    <form onSubmit= { (e) =>{handleAddUser();
     e.preventDefault();
+    props.setVisible(false)
+    setTimeout(() => {
+      props.setVisible(true)
+    }, 1000);
    }}>
     <input
      type="text"
      placeholder="Användarnamn"
      onChange={(e) => setUserName(e.target.value)}
      />
+     <button>Bjud in</button>
    </form>
       </li>
-</ul>
+</ul>}
+</>
   );
  }
 

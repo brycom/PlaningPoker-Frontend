@@ -1,4 +1,4 @@
-
+/* 
 import React, { useEffect, useState } from 'react';
 import { getAverageVoteForIssue } from './api/statstic';
 
@@ -26,3 +26,4 @@ const AverageVoteForIssue: React.FC<AverageVoteForIssueProps> = ({ issueId }) =>
 };
 
 export default AverageVoteForIssue;
+ */

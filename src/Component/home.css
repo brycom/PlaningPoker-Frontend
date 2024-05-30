@@ -17,7 +17,7 @@ body {
 
 
 .homeContainer {
-  background-image: url("src/assets/background_planingpoker.png");
+  background-image: url("/background_planingpoker.png");
   background-size: cover;
   background-position: center;
   height: 100vh;

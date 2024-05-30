@@ -11,13 +11,14 @@ interface Prop {
   issueId: string;
   updateIssueList: boolean;
   setUpdateIssueList:Function;
+  setUpdatePlayers:Function;
+
 }
 
 const timeCards: number[] = [1, 2, 3, 5, 8, 13, 21];
 
-const TimeCardSelector: React.FC<Prop> = ({ url, projectId, issueId, setUpdateIssueList}) => {
+const TimeCardSelector: React.FC<Prop> = ({ setUpdatePlayers, url, projectId, issueId, setUpdateIssueList}) => {
   const [selectedCard, setSelectedCard] = useState<number>();
-  console.log(url, projectId, issueId);
 
   const [vote, setVote] = useState<Vote[]>([]);
 
@@ -37,13 +38,10 @@ const TimeCardSelector: React.FC<Prop> = ({ url, projectId, issueId, setUpdateIs
   };
 
   const handleAddVote = async (projectId: string, issueId: string) => {
-    console.log(
-      "Projekt id: " + projectId + "Issue id: " + issueId + "Url: " + url
-    );
+
     try {
-      console.log(issueId);
       const res = await axios.post<Vote>(
-        `https://seal-app-3ryxu.ondigitalocean.app/vote/uservote/` +
+        url+`/vote/uservote/` +
           projectId +
           "/" +
           issueId,
@@ -55,9 +53,10 @@ const TimeCardSelector: React.FC<Prop> = ({ url, projectId, issueId, setUpdateIs
           },
         }
       );
-      console.log("Data: " + res.data);
+
       setVote([...vote, res.data]);
       setUpdateIssueList(true);
+      setUpdatePlayers(true);
     } catch (error) {
       console.error("Error adding issue", error);
     }

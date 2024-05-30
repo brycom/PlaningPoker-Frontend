@@ -1,4 +1,4 @@
-
+/* 
 import axios from 'axios';
 
 // const BASE_URL = 'http://localhost:8080/statistics';
@@ -6,7 +6,6 @@ const BASE_URL = 'https://seal-app-3ryxu.ondigitalocean.app/statistics';
 
 const getToken = () => {
   const token = localStorage.getItem('auth_token');
-  console.log('Token:', token); 
   return token;
 };
 
@@ -40,7 +39,7 @@ export const getIssuesWithHighVotes = async (projectId: string, threshold: numbe
   return response.data;
 };
 
-
+ */
 
 // import axios from 'axios';
 

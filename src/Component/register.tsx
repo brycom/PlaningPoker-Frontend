@@ -1,7 +1,10 @@
 import { useState } from "react";
+import "./register.css"
 
 interface Props {
   url:string;
+  selectedOption:string;
+  setSelectedOption:Function;
 }
 export function Register(props:Props) {
     const [userName, setUserName] = useState<string>("");
@@ -21,9 +24,10 @@ export function Register(props:Props) {
           body: JSON.stringify({ userName: userName, firstName: firstName, lastName: lastName, password: password, email: email })
         });
   
-        if (response.status === 201) {
+        if (response.status === 200) {
           const data = await response.json();
           console.log(data);
+          props.setSelectedOption("Login")
           
         } else {
           console.log("FEL!");
@@ -36,7 +40,7 @@ export function Register(props:Props) {
     };
   
     return (
-      <form onSubmit={onSubmit}>
+      <form className="register-form" onSubmit={onSubmit}>
         <div>
           <label htmlFor="userName">Userame</label>
           <input

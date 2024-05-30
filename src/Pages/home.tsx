@@ -3,6 +3,7 @@ import PokerTable from "../Component/pokerTable";
 import "../Component/home.css";
 
 import { useState, useEffect } from "react";
+import Statistics from "./Statistics";
 
 interface Props {
   url: string;
@@ -16,13 +17,20 @@ const Home: React.FC<Props> = ({
 }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [selectedIssue, setSelectedIssue] = useState<string>("");
+  const [updatePlayers, setUpdatePlayers] = useState<boolean>(false);
+  const [selectedOption, setSelectedOption] = useState<string | null>(null);
   useEffect(() => {
     let token = localStorage.getItem("auth_token");
     if (token !== null) {
       setIsAuthenticated(true);
     }
   });
-  console.log(isAuthenticated);
+
+
+  const handleBackToHomeClick = () => {
+    setSelectedOption(null);
+  };
+  
 
   return (
     <>
@@ -31,16 +39,25 @@ const Home: React.FC<Props> = ({
           url={url}
           selectedProject={selectedProject}
           setSelectedProject={setSelectedProject}
-        />
+          setUpdatePlayers={setUpdatePlayers} selectedOption={selectedOption} setSelectedOption={setSelectedOption}        />
         <h1 className="homeHeader">Planning Poker</h1>
         {!isAuthenticated && <h1>Logga in!</h1>}
 
-        <PokerTable
+        {isAuthenticated&& selectedOption !== "StatisticsPage"&&<PokerTable
+          setUpdatePlayers={setUpdatePlayers}
+          updatePlayers={updatePlayers}
           projectId={selectedProject}
           issueId={selectedIssue}
           url={url}
           setSelectedIssue={setSelectedIssue}
-        />
+        />}
+        {isAuthenticated&& selectedOption === "StatisticsPage"&& <Statistics onBackToHome={handleBackToHomeClick}
+         url={url}
+          selectedProject={selectedProject}
+           selectedIssue={selectedIssue}
+            setSelectedIssue={setSelectedIssue}
+            updateIssueList={false}
+            setUpdateIssueList={()=>{}}/>}
       </div>
     </>
   );

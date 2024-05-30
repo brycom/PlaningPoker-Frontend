@@ -123,14 +123,14 @@ function Statistics(props:Props) {
         <p>No issues found</p>
       )}
     
-            <IssueList
+            {/* <IssueList
         projectId={props.selectedProject}
         url={props.url}
         selectedIssue={props.selectedIssue}
         setSelectedIssue={props.setSelectedIssue}
         updateIssueList={props.updateIssueList}
         setUpdateIssueList={props.setUpdateIssueList}
-      />
+      /> */}
 
 
         </div>

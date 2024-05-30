@@ -50,6 +50,7 @@ const Home: React.FC<Props> = ({
           issueId={selectedIssue}
           url={url}
           setSelectedIssue={setSelectedIssue}
+          selectedOption={selectedOption}
         />}
         {isAuthenticated&& selectedOption === "StatisticsPage"&& <Statistics onBackToHome={handleBackToHomeClick}
          url={url}

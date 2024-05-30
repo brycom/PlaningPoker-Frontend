@@ -32,7 +32,7 @@ const Navbar: React.FC<Props> = ({
 
   const handleNavbarOptionClick = (option: string) => {
     setSelectedOption(option);
-    if (option === "Login" || option === "Register") {
+    if (option === "StatisticsPage") {
       //setLoginButtonVisible(false);
     }
   };

@@ -52,6 +52,7 @@ const IssueList: React.FC<IssueListProps> = ({
         });
         setIssues(res.data);
         setUpdateIssueList(false);
+        console.log(issues, res.data);
       } catch (error) {
         console.error(error);
       }

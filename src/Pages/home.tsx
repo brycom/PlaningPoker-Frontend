@@ -26,11 +26,9 @@ const Home: React.FC<Props> = ({
     }
   });
 
-
   const handleBackToHomeClick = () => {
     setSelectedOption(null);
   };
-  
 
   return (
     <>
@@ -39,26 +37,35 @@ const Home: React.FC<Props> = ({
           url={url}
           selectedProject={selectedProject}
           setSelectedProject={setSelectedProject}
-          setUpdatePlayers={setUpdatePlayers} selectedOption={selectedOption} setSelectedOption={setSelectedOption}        />
+          setUpdatePlayers={setUpdatePlayers}
+          selectedOption={selectedOption}
+          setSelectedOption={setSelectedOption}
+        />
         <h1 className="homeHeader">Planning Poker</h1>
         {!isAuthenticated && <h1>Logga in!</h1>}
 
-        {isAuthenticated&& selectedOption !== "StatisticsPage"&&<PokerTable
-          setUpdatePlayers={setUpdatePlayers}
-          updatePlayers={updatePlayers}
-          projectId={selectedProject}
-          issueId={selectedIssue}
-          url={url}
-          setSelectedIssue={setSelectedIssue}
-          selectedOption={selectedOption}
-        />}
-        {isAuthenticated&& selectedOption === "StatisticsPage"&& <Statistics onBackToHome={handleBackToHomeClick}
-         url={url}
-          selectedProject={selectedProject}
-           selectedIssue={selectedIssue}
+        {isAuthenticated && selectedOption !== "StatisticsPage" && (
+          <PokerTable
+            setUpdatePlayers={setUpdatePlayers}
+            updatePlayers={updatePlayers}
+            projectId={selectedProject}
+            issueId={selectedIssue}
+            url={url}
+            setSelectedIssue={setSelectedIssue}
+            selectedOption={selectedOption}
+          />
+        )}
+        {isAuthenticated && selectedOption === "StatisticsPage" && (
+          <Statistics
+            onBackToHome={handleBackToHomeClick}
+            url={url}
+            selectedProject={selectedProject}
+            selectedIssue={selectedIssue}
             setSelectedIssue={setSelectedIssue}
             updateIssueList={false}
-            setUpdateIssueList={()=>{}}/>}
+            setUpdateIssueList={() => {}}
+          />
+        )}
       </div>
     </>
   );

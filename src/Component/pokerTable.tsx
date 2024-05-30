@@ -16,15 +16,23 @@ interface Props {
   setSelectedIssue: Function;
   updatePlayers: boolean;
   setUpdatePlayers: Function;
-  selectedOption: string;
+  selectedOption: string | null;
 }
 
-const PokerTable: React.FC<Props> = ({ selectedOption, projectId, url, setUpdatePlayers, updatePlayers }) => {
+const PokerTable: React.FC<Props> = ({
+  selectedOption,
+  projectId,
+  url,
+  setUpdatePlayers,
+  updatePlayers,
+}) => {
   const [players, setPlayers] = useState<Player[]>([]);
   const token = localStorage.getItem("auth_token");
   const [selectedIssue, setSelectedIssue] = useState<string | null>(null);
   const [updateIssueList, setUpdateIssueList] = useState<boolean>(false);
-  const [isIssueListVisible, setIsIssueListVisible] = useState<boolean>(selectedOption !== "StatisticsPage");
+  const [isIssueListVisible, setIsIssueListVisible] = useState<boolean>(
+    selectedOption !== "StatisticsPage"
+  );
 
   useEffect(() => {
     setIsIssueListVisible(selectedOption !== "StatisticsPage");
@@ -46,7 +54,15 @@ const PokerTable: React.FC<Props> = ({ selectedOption, projectId, url, setUpdate
 
   return (
     <div className="poker-table">
-      {selectedIssue && <button className="navbarButton" id="close-btn" onClick={() => setSelectedIssue("")}>X</button>}
+      {selectedIssue && (
+        <button
+          className="navbarButton"
+          id="close-btn"
+          onClick={() => setSelectedIssue("")}
+        >
+          X
+        </button>
+      )}
       <h1>Poker Table</h1>
       <PlayerList players={players} />
       {selectedIssue && (

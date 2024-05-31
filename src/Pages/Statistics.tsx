@@ -1,7 +1,6 @@
-import { useEffect, useState } from "react";
-//import IssueList { Issue } from "../Component/issueList"
-import "../Component/statistic/statistics.css";
-import axios from "axios";
+import { useEffect, useState } from "react"
+import "../css/statistics.css"
+import axios from "axios"
 
 interface Issue {
   issueId: string;
@@ -79,7 +78,6 @@ function Statistics(props: Props) {
       }
     );
     setIssues(response.data);
-    //fetchAverageVote();
   };
 
   useEffect(() => {
@@ -95,15 +93,15 @@ function Statistics(props: Props) {
   return (
     <div>
       <div>
-        <h1>Statistik</h1>
-        <button onClick={props.onBackToHome} className="backButton">
-          Spela planingpoker
+        <h1>Statistics</h1>
+        <button className="poker-btn" onClick={props.onBackToHome} >
+          Play poker
         </button>
         {issues.length > 0 ? (
           <ul className="issues-container">
             {issues.map((issue) => (
               <li key={issue.issueId} className="issue-item">
-                <h3>Genomsnitlig röst: {issue.averageVotes}</h3>
+                <h3>Averige vote: {issue.averageVotes}</h3>
                 <p>Issue Name: {issue.issuename}</p>
                 <p>Estimated Time: {issue.estimatedTime}</p>
                 <p>Actual Time: {issue.actualTime}</p>

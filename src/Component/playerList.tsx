@@ -1,5 +1,5 @@
 import React from "react";
-import "./pokertable.css";
+import "../css/pokertable.css";
 
 interface Player {
   userId: number;

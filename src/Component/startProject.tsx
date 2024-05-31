@@ -1,5 +1,6 @@
 import { useState } from "react"
 import axios from "axios"
+import "../css/navbar.css"
 interface Props{
 
     setUpdateList: Function;
@@ -48,8 +49,8 @@ const StartProject:React.FC<Props> = ({url,setUpdateList,setShowStartProject}) =
 
 
     return (
-        <div>
-            <h1>Starta projekt</h1>
+        <>
+            <h1>Start project</h1>
 
 
 
@@ -59,17 +60,20 @@ const StartProject:React.FC<Props> = ({url,setUpdateList,setShowStartProject}) =
             setUpdateList(true);
 
             }}>
-            <input type="text" placeholder="Projectnamn" value={projectname} onChange={(e) => setProjectname(e.target.value)}/>
-            <button type="submit">Skapa</button>
-            
-        </form>
-        <button onClick={() => {
+            <input className="projectlist-li"type="text" placeholder="Projectnamn" value={projectname} onChange={(e) => setProjectname(e.target.value)}/>
+            <div className="btn-container">
+            <button className="projectlist-li" type="submit">Create</button>
+        <button className="projectlist-li" onClick={(e) => {
+            e.preventDefault();
             setShowStartProject(false)
             setUpdateList(true)}}>
-                Stäng
+                Close
             </button>
+            </div>
+            
+        </form>
 
-        </div>
+        </>
         
     )
 }

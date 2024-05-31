@@ -14,17 +14,29 @@ interface Props {
   issueId: string;
   url: string;
   setSelectedIssue: Function;
-  updatePlayers:boolean
-  setUpdatePlayers:Function;
+  updatePlayers: boolean;
+  setUpdatePlayers: Function;
+  selectedOption: string | null;
 }
 
-const PokerTable: React.FC<Props> = ({ projectId, url,setUpdatePlayers,updatePlayers }) => {
+const PokerTable: React.FC<Props> = ({
+  selectedOption,
+  projectId,
+  url,
+  setUpdatePlayers,
+  updatePlayers,
+}) => {
   const [players, setPlayers] = useState<Player[]>([]);
   const token = localStorage.getItem("auth_token");
-
   const [selectedIssue, setSelectedIssue] = useState<string | null>(null);
   const [updateIssueList, setUpdateIssueList] = useState<boolean>(false);
-  
+  const [isIssueListVisible, setIsIssueListVisible] = useState<boolean>(
+    selectedOption !== "StatisticsPage"
+  );
+
+  useEffect(() => {
+    setIsIssueListVisible(selectedOption !== "StatisticsPage");
+  }, [selectedOption]);
 
   useEffect(() => {
     axios
@@ -34,36 +46,46 @@ const PokerTable: React.FC<Props> = ({ projectId, url,setUpdatePlayers,updatePla
         },
       })
       .then((response) => {
-        setPlayers(response.data)
+        setPlayers(response.data);
         setUpdatePlayers(false);
       })
       .catch((error) => console.error("Error fetching players:", error));
   }, [projectId, updatePlayers]);
-  
 
   return (
     <div className="poker-table">
-      {selectedIssue&&<button className="navbarButton" id="close-btn" onClick={()=>setSelectedIssue("")}>X</button>}
+      {selectedIssue && (
+        <button
+          className="navbarButton"
+          id="close-btn"
+          onClick={() => setSelectedIssue("")}
+        >
+          X
+        </button>
+      )}
       <h1>Poker Table</h1>
       <PlayerList players={players} />
       {selectedIssue && (
         <TimeCardSelector
-        setUpdatePlayers={setUpdatePlayers}
+          setUpdatePlayers={setUpdatePlayers}
           url={url}
           projectId={projectId}
           issueId={selectedIssue}
           setSelectedIssue={setSelectedIssue}
-           updateIssueList={updateIssueList}
-            setUpdateIssueList={setUpdateIssueList}  />
+          updateIssueList={updateIssueList}
+          setUpdateIssueList={setUpdateIssueList}
+        />
       )}
-      <IssueList
-        projectId={projectId}
-        url={url}
-        selectedIssue={selectedIssue}
-        setSelectedIssue={setSelectedIssue}
-        updateIssueList={updateIssueList}
-        setUpdateIssueList={setUpdateIssueList}
-      />
+      {isIssueListVisible && (
+        <IssueList
+          projectId={projectId}
+          url={url}
+          selectedIssue={selectedIssue}
+          setSelectedIssue={setSelectedIssue}
+          updateIssueList={updateIssueList}
+          setUpdateIssueList={setUpdateIssueList}
+        />
+      )}
     </div>
   );
 };

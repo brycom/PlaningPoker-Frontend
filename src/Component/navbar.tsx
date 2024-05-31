@@ -75,7 +75,7 @@ const Navbar: React.FC<Props> = ({
               <div className="projectlist-container">
               <button
                 className="navbarButton" id="projectlist-btn"              >
-                Bjuda in
+                Invite
               </button>
               <InvitePlayers visible={visible} setVisible={setVisible} setUpdatePlayers={setUpdatePlayers} url={url} selectedProject={selectedProject} />
               </div>
@@ -88,7 +88,7 @@ const Navbar: React.FC<Props> = ({
                 className="navbarButton"
                 onClick={() => handleNavbarOptionClick("StatisticsPage")}
               >
-                Statistik
+                Statistics
               </button>
             )}
           </div>
@@ -98,7 +98,7 @@ const Navbar: React.FC<Props> = ({
                 className="navbarButtonUser"
                 onClick={() => handleNavbarOptionClick("Register")}
               >
-                Registrera
+                Register
               </button>
             )}
             {!isAuthenticated &&  (
@@ -106,25 +106,19 @@ const Navbar: React.FC<Props> = ({
                 className="navbarButtonUser"
                 onClick={() => handleNavbarOptionClick("Login")}
               >
-                Logga in
+                Login
               </button>
             )}
             {isAuthenticated && (
               <button className="navbarButtonUser" onClick={logout}>
-                Logga ut
+                Logout
               </button>
             )}
           </div>
         </div>
       }
 
-{/*       {selectedOption === "StatisticsPage" && (
-        <StatisticsPage
-          url={url}
-          projectId={selectedProject}
-          onBackToHome={handleBackToHomeClick}
-        />
-      )} */}
+
       {selectedOption === "Register" && <Register selectedOption={selectedOption} setSelectedOption={setSelectedOption} url={url} />}
       {selectedOption === "Login" && <Login url={url} />}
     </div>

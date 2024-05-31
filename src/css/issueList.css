@@ -14,7 +14,7 @@
 
 .issueListContainer {
   position: fixed;
-  top: 80px; /* Adjust based on your navbar height */
+  top: 80px;
   right: 0;
   bottom: 0;
   width: 300px;

@@ -1,6 +1,6 @@
 import Navbar from "../Component/navbar";
-import PokerTable from "../Component/pokerTable";
-import "../Component/home.css";
+import PokerTable from "./pokerTable";
+import "../css/home.css";
 
 import { useState, useEffect } from "react";
 import Statistics from "./Statistics";

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./register.css"
+import "../css/register.css"
 
 interface Props {
   url:string;

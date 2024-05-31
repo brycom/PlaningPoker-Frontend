@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
-
-/* import StatisticsPage from "../Pages/StatisticsPage"; */ // Uppdaterad import
 import Register from "./register";
 import Login from "./login";
-import "./navbar.css";
+import "../css/navbar.css";
 import ProjectList from "./projectList";
 import InvitePlayers from "./invitePlayer";
 
@@ -26,14 +24,12 @@ const Navbar: React.FC<Props> = ({
   setSelectedOption
 }) => {
   
-  //const [loginButtonVisible, setLoginButtonVisible] = useState(true);
   const[visible,setVisible]= useState(true);
   
 
   const handleNavbarOptionClick = (option: string) => {
     setSelectedOption(option);
     if (option === "Login" || option === "Register") {
-      //setLoginButtonVisible(false);
     }
   };
 
@@ -117,14 +113,6 @@ const Navbar: React.FC<Props> = ({
           </div>
         </div>
       }
-
-{/*       {selectedOption === "StatisticsPage" && (
-        <StatisticsPage
-          url={url}
-          projectId={selectedProject}
-          onBackToHome={handleBackToHomeClick}
-        />
-      )} */}
       {selectedOption === "Register" && <Register selectedOption={selectedOption} setSelectedOption={setSelectedOption} url={url} />}
       {selectedOption === "Login" && <Login url={url} />}
     </div>

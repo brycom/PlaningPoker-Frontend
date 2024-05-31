@@ -1,6 +1,6 @@
 import axios from "axios";
 import  { useState } from "react";
-import "../Component/navbar.css"
+import "../css/navbar.css"
 
 interface Props{
   url: string;

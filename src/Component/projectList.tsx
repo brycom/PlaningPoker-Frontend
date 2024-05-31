@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-
-import StartProject from '../Pages/startProject';
+import "../css/navbar.css"
+import StartProject from './startProject';
 
 interface Props {
     setSelectedOption: Function;

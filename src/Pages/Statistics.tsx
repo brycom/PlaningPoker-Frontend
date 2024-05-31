@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import IssueList /* { Issue } */ from "../Component/issueList"
-import "../Component/statistic/statistics.css"
+import "../css/statistics.css"
 import axios from "axios"
 
 interface Issue {
@@ -76,7 +76,6 @@ function Statistics(props:Props) {
               }
           });
           setIssues(response.data);
-          //fetchAverageVote();
       }
       
       

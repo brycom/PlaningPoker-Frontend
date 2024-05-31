@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "../Component/issueList.css";
+import "../css/issueList.css";
+import"../css/navbar.css"
 
 interface Vote {
   voteId: string;
@@ -172,16 +173,7 @@ const IssueList: React.FC<IssueListProps> = ({
         {issues.map((issue) => (
           <li className="issueListItem" key={issue.issueId}>
             <div>
-              {/* <p>ID: {issue.issueId}</p> */}
               <p>Issue Name: {issue.issuename}</p>
-{/*               <p>
-                Votes:{" "}
-                {issue.votes.map((vote) => (
-                  <span key={vote.voteId}>
-                    User {vote.userId}: {vote.vote}
-                  </span>
-                ))}
-              </p> */}
               <p>
                 Start Time:{" "}
                 {issue.startTime

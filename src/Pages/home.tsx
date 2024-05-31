@@ -42,7 +42,7 @@ const Home: React.FC<Props> = ({
           setSelectedOption={setSelectedOption}
         />
         <h1 className="homeHeader">Planning Poker</h1>
-        {!isAuthenticated && <h1>Logga in!</h1>}
+        {!isAuthenticated && <h1>Login!</h1>}
 
         {isAuthenticated && selectedOption !== "StatisticsPage" && (
           <PokerTable

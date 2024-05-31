@@ -29,12 +29,14 @@ p {
 }
 
 .issueListContainer input {
+  width: 90%;
   border: none;
   border-radius: 5px;
   height: 30px;
 }
 
 .issue-btn {
+ 
   background-color: transparent;
   color: rgb(189, 182, 182);
   border: none;
@@ -43,12 +45,31 @@ p {
   transition: background-color 0.3s ease;
 }
 .new-issue {
-  right: 50%;
-  left: 50%;
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+/*   right: 50%;
+  left: 50%; */
   background-color: rgba(0, 148, 64, 0.348);
   border: none;
   border-radius: 10px;
   color: antiquewhite;
   font-size: x-large;
   width: 50%;
+}
+.btn-div{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+#create-issue{
+  margin-left: 25%;
+
+
+}
+#create-issue:hover{
+  background-color: rgba(0, 148, 64, 0.719);
+  cursor: pointer;
+
+
 }

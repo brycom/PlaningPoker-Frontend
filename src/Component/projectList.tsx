@@ -74,7 +74,7 @@ const ProjectList: React.FC<Props> = (props) => {
                          }, 1000);
                         }}>{project.projectname}</li>
                 ))}
-                <li className='projectlist-li' onClick={() => setShowStartProject(true)}>Nytt projekt +
+                <li className='projectlist-li' onClick={() => setShowStartProject(true)}>New project +
                 {showStartProject&&<StartProject url={props.url} setShowStartProject={setShowStartProject} setUpdateList={setUpdateList}/>}
                 </li>
             </ul>}

@@ -38,6 +38,7 @@ const IssueList: React.FC<IssueListProps> = ({
   const [isUpdateFormVisible, setIsUpdateFormVisible] =
     useState<boolean>(false);
   const [currentIssue, setCurrentIssue] = useState<Issue | null>(null);
+  const [currentIssueId, setCurrentIssueId] = useState<string>("");
   const [updatedIssueName, setUpdatedIssueName] = useState<string>("");
   const [isFormVisible, setIsFormVisible] = useState<boolean>(false);
   const [error, setError] = useState<string>("");
@@ -126,6 +127,7 @@ const IssueList: React.FC<IssueListProps> = ({
     setCurrentIssue(issue);
     setUpdatedIssueName(issue.issuename);
     setIsUpdateFormVisible(true);
+    setCurrentIssueId(issue.issueId);
   };
   const handleUpdateIssueSubmit = async (issueId: string) => {
     if (!currentIssue) return;
@@ -215,7 +217,7 @@ const IssueList: React.FC<IssueListProps> = ({
                 Start vote
               </button>
             </div>
-            {isUpdateFormVisible && currentIssue && (
+            {isUpdateFormVisible && currentIssueId === issue.issueId && currentIssue&& (
               <div>
                 <h3>Update Issue</h3>
                 <input
@@ -243,22 +245,32 @@ const IssueList: React.FC<IssueListProps> = ({
         {isFormVisible && (
           <div>
             <input
+            placeholder="Issue name"
               type="text"
               value={newIssueName}
               onChange={(e) => setNewIssueName(e.target.value)}
             />
+            <div className="btn-div">
             <button className="new-issue" onClick={handleAddIssue}>
               Add Issue
             </button>
             {error && <p>{error}</p>}
-          </div>
-        )}
         <button
           className="new-issue"
           onClick={() => setIsFormVisible(!isFormVisible)}
         >
           {isFormVisible ? "Cancel" : "+ Issue"}
         </button>
+        </div>
+          </div>
+        )}
+        {!isFormVisible &&    
+             <button
+          className="new-issue" id="create-issue"
+          onClick={() => setIsFormVisible(!isFormVisible)}
+        >
+          + Issue
+        </button>}
       </ul>
     </div>
   );

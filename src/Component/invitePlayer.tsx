@@ -42,7 +42,7 @@ function InvitePlayers(props: Props) {
    return (
     <>
    {props.visible &&<ul className='invitePlayer-ul'>
-   <li className='invitePlayer-li' >Nytt projekt +
+   <li className='invitePlayer-li' >Ny Spelare +
    <form onSubmit= { (e) =>{handleAddUser();
     e.preventDefault();
     props.setVisible(false)

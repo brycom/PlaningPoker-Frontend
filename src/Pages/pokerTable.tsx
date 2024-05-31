@@ -52,7 +52,7 @@ const PokerTable: React.FC<Props> = ({ projectId, url,setUpdatePlayers,updatePla
           url={url}
           projectId={projectId}
           issueId={selectedIssue}
-          
+          setSelectedIssue={setSelectedIssue}
            updateIssueList={updateIssueList}
             setUpdateIssueList={setUpdateIssueList}  />
       )}

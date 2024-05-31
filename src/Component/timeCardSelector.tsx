@@ -12,12 +12,13 @@ interface Prop {
   updateIssueList: boolean;
   setUpdateIssueList:Function;
   setUpdatePlayers:Function;
+  setSelectedIssue:Function;
 
 }
 
 const timeCards: number[] = [1, 2, 3, 5, 8, 13, 21];
 
-const TimeCardSelector: React.FC<Prop> = ({ setUpdatePlayers, url, projectId, issueId, setUpdateIssueList}) => {
+const TimeCardSelector: React.FC<Prop> = ({setSelectedIssue, setUpdatePlayers, url, projectId, issueId, setUpdateIssueList}) => {
   const [selectedCard, setSelectedCard] = useState<number>();
 
   const [vote, setVote] = useState<Vote[]>([]);
@@ -57,6 +58,7 @@ const TimeCardSelector: React.FC<Prop> = ({ setUpdatePlayers, url, projectId, is
       setVote([...vote, res.data]);
       setUpdateIssueList(true);
       setUpdatePlayers(true);
+      setSelectedIssue("");
     } catch (error) {
       console.error("Error adding issue", error);
     }

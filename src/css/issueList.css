@@ -27,3 +27,28 @@ p {
   color: white;
   text-shadow: 1px 1px 2px black;
 }
+
+.issueListContainer input {
+  border: none;
+  border-radius: 5px;
+  height: 30px;
+}
+
+.issue-btn {
+  background-color: transparent;
+  color: rgb(189, 182, 182);
+  border: none;
+  cursor: pointer;
+  font-family: "Patrick Hand";
+  transition: background-color 0.3s ease;
+}
+.new-issue {
+  right: 50%;
+  left: 50%;
+  background-color: rgba(0, 148, 64, 0.348);
+  border: none;
+  border-radius: 10px;
+  color: antiquewhite;
+  font-size: x-large;
+  width: 50%;
+}

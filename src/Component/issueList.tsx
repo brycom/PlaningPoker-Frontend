@@ -31,7 +31,7 @@ const IssueList: React.FC<IssueListProps> = ({
 
   setSelectedIssue,
   updateIssueList,
-  setUpdateIssueList
+  setUpdateIssueList,
 }) => {
   const [issues, setIssues] = useState<Issue[]>([]);
   const [newIssueName, setNewIssueName] = useState<string>("");
@@ -60,7 +60,7 @@ const IssueList: React.FC<IssueListProps> = ({
     if (token && projectId) {
       fetchIssues();
     }
-  }, [ projectId, currentIssue,updateIssueList]);
+  }, [projectId, currentIssue, updateIssueList]);
 
   const handleAddIssue = async () => {
     if (!newIssueName) {
@@ -108,7 +108,6 @@ const IssueList: React.FC<IssueListProps> = ({
         }
       );
       const actualTime = res.data;
- 
 
       setIssues(
         issues.map((issue) =>
@@ -188,16 +187,28 @@ const IssueList: React.FC<IssueListProps> = ({
               </p>
               <p>Estimated Time:{issue.estimatedTime}</p>
               <p>Actual Time:{issue.actualTime}</p>
-              <button onClick={() => handleCloseIssue(issue.issueId)}>
+              <button
+                className="issue-btn"
+                onClick={() => handleCloseIssue(issue.issueId)}
+              >
                 Close
               </button>
-              <button onClick={() => handleUpdateIssue(issue)}>Update</button>
-              <button onClick={() => handleDeleteIssue(issue.issueId)}>
+              <button
+                className="issue-btn"
+                onClick={() => handleUpdateIssue(issue)}
+              >
+                Update
+              </button>
+              <button
+                className="issue-btn"
+                onClick={() => handleDeleteIssue(issue.issueId)}
+              >
                 Delete
               </button>
               <button
+                className="issue-btn"
                 onClick={() => {
-                   setSelectedIssue(issue.issueId);
+                  setSelectedIssue(issue.issueId);
                 }}
               >
                 Start vote
@@ -210,11 +221,19 @@ const IssueList: React.FC<IssueListProps> = ({
                   type="text"
                   value={updatedIssueName}
                   onChange={(e) => setUpdatedIssueName(e.target.value)}
-                  />
-                <button onClick={() => handleUpdateIssueSubmit(currentIssue.issueId)}>
+                />
+                <button
+                  className="issue-btn"
+                  onClick={() => handleUpdateIssueSubmit(currentIssue.issueId)}
+                >
                   Update Issue
                 </button>
-                <button onClick={() => setIsUpdateFormVisible(false)}>Cancel</button>
+                <button
+                  className="issue-btn"
+                  onClick={() => setIsUpdateFormVisible(false)}
+                >
+                  Cancel
+                </button>
                 {error && <p>{error}</p>}
               </div>
             )}
@@ -227,15 +246,19 @@ const IssueList: React.FC<IssueListProps> = ({
               value={newIssueName}
               onChange={(e) => setNewIssueName(e.target.value)}
             />
-            <button onClick={handleAddIssue}>Add Issue</button>
+            <button className="new-issue" onClick={handleAddIssue}>
+              Add Issue
+            </button>
             {error && <p>{error}</p>}
           </div>
         )}
-            <button onClick={() => setIsFormVisible(!isFormVisible)}>
-              {isFormVisible ? "Cancel" : "+ Issue"}
-            </button>
+        <button
+          className="new-issue"
+          onClick={() => setIsFormVisible(!isFormVisible)}
+        >
+          {isFormVisible ? "Cancel" : "+ Issue"}
+        </button>
       </ul>
-
     </div>
   );
 };

@@ -1,6 +1,6 @@
 import axios from "axios";
 import  { useState } from "react";
-import "../Component/navbar.css"
+import "../css/navbar.css"
 
 interface Props{
   url: string;
@@ -42,7 +42,7 @@ function InvitePlayers(props: Props) {
    return (
     <>
    {props.visible &&<ul className='invitePlayer-ul'>
-   <li className='invitePlayer-li' >Ny Spelare +
+   <li className='invitePlayer-li' >New player +
    <form onSubmit= { (e) =>{handleAddUser();
     e.preventDefault();
     props.setVisible(false)
@@ -52,10 +52,10 @@ function InvitePlayers(props: Props) {
    }}>
     <input
      type="text"
-     placeholder="Användarnamn"
+     placeholder="Username"
      onChange={(e) => setUserName(e.target.value)}
      />
-     <button>Bjud in</button>
+     <button>Invite</button>
    </form>
       </li>
 </ul>}

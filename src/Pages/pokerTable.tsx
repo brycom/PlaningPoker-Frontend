@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import PlayerList from "./playerList";
-import TimeCardSelector from "./timeCardSelector";
-import IssueList from "./issueList";
-import "./pokertable.css";
+import PlayerList from "../Component/playerList";
+import TimeCardSelector from "../Component/timeCardSelector";
+import IssueList from "../Component/issueList";
+import "../css/pokertable.css";
 
 interface Player {
   userId: number;

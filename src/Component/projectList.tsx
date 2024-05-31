@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-
-import StartProject from '../Pages/startProject';
+import "../css/navbar.css"
+import StartProject from './startProject';
 
 interface Props {
     setSelectedOption: Function;
@@ -74,7 +74,7 @@ const ProjectList: React.FC<Props> = (props) => {
                          }, 1000);
                         }}>{project.projectname}</li>
                 ))}
-                <li className='projectlist-li' onClick={() => setShowStartProject(true)}>Nytt projekt +
+                <li className='projectlist-li' onClick={() => setShowStartProject(true)}>New project +
                 {showStartProject&&<StartProject url={props.url} setShowStartProject={setShowStartProject} setUpdateList={setUpdateList}/>}
                 </li>
             </ul>}

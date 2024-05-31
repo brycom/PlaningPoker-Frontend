@@ -1,6 +1,6 @@
 import Navbar from "../Component/navbar";
-import PokerTable from "../Component/pokerTable";
-import "../Component/home.css";
+import PokerTable from "./pokerTable";
+import "../css/home.css";
 
 import { useState, useEffect } from "react";
 import Statistics from "./Statistics";
@@ -42,7 +42,7 @@ const Home: React.FC<Props> = ({
           setSelectedOption={setSelectedOption}
         />
         <h1 className="homeHeader">Planning Poker</h1>
-        {!isAuthenticated && <h1>Logga in!</h1>}
+        {!isAuthenticated && <h1>Login!</h1>}
 
         {isAuthenticated && selectedOption !== "StatisticsPage" && (
           <PokerTable
